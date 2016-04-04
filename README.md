@@ -2,8 +2,8 @@
 En samling af små tools som hjælper der hvor Dinero har mangler. Ja, Dinero.dk er tæt på perfekt, men der mangler nogle features.
 
 
-#Dinero.Tools.Difference - Find de manglende bilag
-Løsning der hjælper dig med at finde de bilag du mangler i Dinero.
+#Find de manglende bilag ved bankafstemning
+Projektet "Dinero.Tools.Difference" hjælper dig med at finde de bilag du mangler i Dinero.
 
 Disse findes ved at uploade et CSV udtræk fra Dinero fra din "Bank" konto, og et CSV udtræk fra dine rigtige konto i banken (ja total navneforvirring, når man ikke er revisor).
 
