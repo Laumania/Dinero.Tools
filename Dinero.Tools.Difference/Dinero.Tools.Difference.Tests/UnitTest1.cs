@@ -1,7 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace DineroKontoComparer.Tests
+namespace Dinero.Tools.Difference.Tests
 {
     [TestClass]
     public class UnitTest1

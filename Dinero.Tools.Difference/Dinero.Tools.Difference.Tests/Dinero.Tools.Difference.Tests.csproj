@@ -6,8 +6,8 @@
     <ProjectGuid>{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DineroKontoComparer.Tests</RootNamespace>
-    <AssemblyName>DineroKontoComparer.Tests</AssemblyName>
+    <RootNamespace>Dinero.Tools.Difference.Tests</RootNamespace>
+    <AssemblyName>Dinero.Tools.Difference.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
