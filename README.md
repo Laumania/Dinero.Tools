@@ -13,3 +13,4 @@ I dag gøres det manuelt, således: https://dinero.dk/support/bankafstemning-hvo
 #Tekniske spidsfindigheder
 - Visual Studio 2015
 - .NET 4.5.2
+- Moq https://github.com/Moq

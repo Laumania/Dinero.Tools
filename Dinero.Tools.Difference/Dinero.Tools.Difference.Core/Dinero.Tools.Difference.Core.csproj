@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataParsers\DineroDataFileParser.cs" />
+    <Compile Include="DataParsers\NordeaDataFileParser.cs" />
+    <Compile Include="Interfaces\IDataParser.cs" />
     <Compile Include="Interfaces\IDifferenceService.cs" />
     <Compile Include="Models\DifferenceResultModel.cs" />
     <Compile Include="Models\EntryDifferenceModel.cs" />

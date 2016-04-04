@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 
@@ -9,7 +10,31 @@ namespace Dinero.Tools.Difference.Core.Services
     {
         public DifferenceResultModel FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
-            throw new NotImplementedException();
+            var result                  = new DifferenceResultModel();
+            var differenceEntries       = new List<EntryDifferenceModel>();
+
+            var dineroEntryAmountGroups = dineroEntries.GroupBy(x => x.Amount);
+            var bankEntryAmountGroups   = bankEntries.GroupBy(x => x.Amount);
+
+            foreach (var bankEntryAmountGroup in bankEntryAmountGroups)
+            {
+                var foundInDineroEntryAmountGroup = dineroEntryAmountGroups.FirstOrDefault(x => x.Key == bankEntryAmountGroup.Key);
+
+                if (foundInDineroEntryAmountGroup?.Count() == bankEntryAmountGroup?.Count())
+                {
+                    //All is good
+                }
+                else
+                {
+                    //We have an error
+                    var entryDifferenceModel = new EntryDifferenceModel {EntryModels = bankEntryAmountGroup.ToList()};
+                    differenceEntries.Add(entryDifferenceModel);
+                }
+            }
+
+            result.DifferenceEntries = differenceEntries;
+
+            return result;
         }
     }
 }
