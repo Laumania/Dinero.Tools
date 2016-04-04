@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DineroKontoComparer.Web", "DineroKontoComparer.Web\DineroKontoComparer.Web\DineroKontoComparer.Web.csproj", "{45708DE3-ABEB-4795-8AD7-CDA00FE2904D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DineroKontoComparer.Core", "DineroKontoComparer.Core\DineroKontoComparer.Core.csproj", "{F02824AF-0A5B-4A2E-A8BC-ACA64D88D9CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DineroKontoComparer.Tests", "DineroKontoComparer.Tests\DineroKontoComparer.Tests.csproj", "{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{45708DE3-ABEB-4795-8AD7-CDA00FE2904D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45708DE3-ABEB-4795-8AD7-CDA00FE2904D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45708DE3-ABEB-4795-8AD7-CDA00FE2904D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45708DE3-ABEB-4795-8AD7-CDA00FE2904D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F02824AF-0A5B-4A2E-A8BC-ACA64D88D9CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F02824AF-0A5B-4A2E-A8BC-ACA64D88D9CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F02824AF-0A5B-4A2E-A8BC-ACA64D88D9CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F02824AF-0A5B-4A2E-A8BC-ACA64D88D9CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
