@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dinero.Tools.Difference.Web
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dinero.Tools.Difference.Tests", "Dinero.Tools.Difference.Tests\Dinero.Tools.Difference.Tests.csproj", "{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dinero.Tools.Difference.DataParsers", "Dinero.Tools.Difference.DataParsers\Dinero.Tools.Difference.DataParsers.csproj", "{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF72CC1E-BC63-4022-9AE1-09C1CAD78B7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -19,8 +19,9 @@ namespace Dinero.Tools.Difference.Core.Services
             result.TotalDinero              = dineroEntries.Sum(x => x.Amount);
             result.TotalDifference          = result.TotalBank - result.TotalDinero;
 
-            var dineroEntryAmountGroups = dineroEntries.GroupBy(x => x.Amount);
-            var bankEntryAmountGroups   = bankEntries.GroupBy(x => x.Amount);
+            //Convert to Groups
+            var dineroEntryAmountGroups     = dineroEntries.GroupBy(x => x.Amount);
+            var bankEntryAmountGroups       = bankEntries.GroupBy(x => x.Amount);
 
             foreach (var bankEntryAmountGroup in bankEntryAmountGroups)
             {
