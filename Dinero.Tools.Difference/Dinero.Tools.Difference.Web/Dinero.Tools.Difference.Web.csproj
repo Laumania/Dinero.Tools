@@ -129,6 +129,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ShowDifferencesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -136,6 +137,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\ShowDifferences.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,12 +147,15 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ViewModels\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dinero.Tools.Difference.Core\Dinero.Tools.Difference.Core.csproj">
       <Project>{f02824af-0a5b-4a2e-a8bc-aca64d88d9cd}</Project>
       <Name>DineroKontoComparer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Dinero.Tools.Difference.DataParsers\Dinero.Tools.Difference.DataParsers.csproj">
+      <Project>{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}</Project>
+      <Name>Dinero.Tools.Difference.DataParsers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

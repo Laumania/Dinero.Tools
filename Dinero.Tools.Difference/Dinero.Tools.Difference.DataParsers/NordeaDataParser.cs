@@ -20,7 +20,8 @@ namespace Dinero.Tools.Difference.DataParsers
                 {
                     Amount  = nordeaEntry.Amount,
                     Date    = nordeaEntry.Date,
-                    Text    = nordeaEntry.Text
+                    Text    = nordeaEntry.Text,
+                    Saldo   = nordeaEntry.Saldo
                 };
                 result.Add(entryModel);
             }
@@ -29,7 +30,7 @@ namespace Dinero.Tools.Difference.DataParsers
         }
     }
 
-    [DelimitedRecord(";"), IgnoreFirst(1)]
+    [DelimitedRecord(";"), IgnoreFirst(2)]
     internal class NordeaEntry
     {
         [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]

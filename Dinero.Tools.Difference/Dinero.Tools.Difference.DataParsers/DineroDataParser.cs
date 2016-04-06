@@ -20,7 +20,8 @@ namespace Dinero.Tools.Difference.DataParsers
                 {
                     Amount  = dineroEntry.Amount,
                     Date    = dineroEntry.Date,
-                    Text    = dineroEntry.Text
+                    Text    = dineroEntry.Text,
+                    Saldo   = dineroEntry.Saldo
                 };
                 result.Add(entryModel);
             }
@@ -36,7 +37,7 @@ namespace Dinero.Tools.Difference.DataParsers
         public string AccountName;
         [FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
         public DateTime Date;
-        public int AppendixNumber;
+        public int? AppendixNumber;
         public string AppendixType;
         public string Text;
         public string TaxType;

@@ -1,0 +1,43 @@
+﻿@using Dinero.Tools.Difference.Core.Models
+@model Dinero.Tools.Difference.Web.ViewModels.ShowDifferencesViewModel
+
+@{
+//ViewBag.Title = "title";
+}
+
+<h2>Resultat</h2>
+
+<h2>Bank Saldo: @Model.DifferenceResult.TotalBank</h2>
+<h2>Dinero Saldo: @Model.DifferenceResult.TotalDinero</h2>
+<h2>Difference: @Model.DifferenceResult.TotalDifference</h2>
+
+
+
+    <h3>Bank</h3>
+    <table>
+        <thead>
+            <tr>Dato</tr>
+            <tr>Tekst</tr>
+            <tr>Beløb</tr>
+            <tr>Afstemt</tr>
+        </thead>
+
+        @foreach (var bankEntry in @Model.DifferenceResult.OriginalBankEntries)
+        {
+            <tr>
+                <td>@bankEntry.Date.ToString("dd-MM-yyyy")</td>
+                <td>@bankEntry.Text</td>
+                <td>@bankEntry.Amount</td>
+                <td>
+                    @if (bankEntry.Status == EntryStatus.Balanced)
+                    {
+                        <span style="color: green;">Ja</span>
+                    }
+                    else
+                    {
+                        <span style="color: red;">Nej</span>
+                    }
+                </td>
+            </tr>
+        }
+    </table>

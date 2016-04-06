@@ -16,8 +16,8 @@ namespace Dinero.Tools.Difference.Core.Services
 
             result.OriginalDineroEntries    = dineroEntries;
             result.OriginalBankEntries      = bankEntries;
-            result.TotalBank                = bankEntries.Sum(x => x.Amount);
-            result.TotalDinero              = dineroEntries.Sum(x => x.Amount);
+            result.TotalBank                = bankEntries.Max(x => x.Saldo);
+            result.TotalDinero              = dineroEntries.Max(x => x.Saldo);
             result.TotalDifference          = result.TotalDinero - result.TotalBank;
 
             return result;

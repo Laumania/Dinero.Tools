@@ -6,5 +6,22 @@
 <p>Nu kører det.</p>
 
 <div>
-    
+    @using (Html.BeginForm("ShowDifferences", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            <p>Dinero Fil:</p>
+            <input type="file" id="DineroFile" name="dineroFile"/>
+        </div>
+
+        <div>
+            <p>Bank Fil:</p>
+            <input type="file" id="BankFile" name="bankFile"/>
+        </div>
+
+        <div>
+            <input type="submit" value="Find differences" />    
+        </div>
+    }
 </div>
