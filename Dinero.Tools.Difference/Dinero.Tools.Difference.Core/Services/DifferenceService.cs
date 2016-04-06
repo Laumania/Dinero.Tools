@@ -11,37 +11,31 @@ namespace Dinero.Tools.Difference.Core.Services
         public DifferenceResultModel FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
             var result                      = new DifferenceResultModel();
-            var differenceEntries           = new List<EntryDifferenceModel>();
+
+            CalculateAndSetEntryStatus(dineroEntries, bankEntries);
 
             result.OriginalDineroEntries    = dineroEntries;
             result.OriginalBankEntries      = bankEntries;
             result.TotalBank                = bankEntries.Sum(x => x.Amount);
             result.TotalDinero              = dineroEntries.Sum(x => x.Amount);
-            result.TotalDifference          = result.TotalBank - result.TotalDinero;
-
-            //Convert to Groups
-            var dineroEntryAmountGroups     = dineroEntries.GroupBy(x => x.Amount);
-            var bankEntryAmountGroups       = bankEntries.GroupBy(x => x.Amount);
-
-            foreach (var bankEntryAmountGroup in bankEntryAmountGroups)
-            {
-                var foundInDineroEntryAmountGroup = dineroEntryAmountGroups.FirstOrDefault(x => x.Key == bankEntryAmountGroup.Key);
-
-                if (foundInDineroEntryAmountGroup?.Count() == bankEntryAmountGroup?.Count())
-                {
-                    //All is good
-                }
-                else
-                {
-                    //We have an error
-                    var entryDifferenceModel = new EntryDifferenceModel {EntryModels = bankEntryAmountGroup.ToList()};
-                    differenceEntries.Add(entryDifferenceModel);
-                }
-            }
-
-            result.DifferenceEntries = differenceEntries;
+            result.TotalDifference          = result.TotalDinero - result.TotalBank;
 
             return result;
+        }
+
+        private void CalculateAndSetEntryStatus(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
+        {
+            foreach (var bankEntry in bankEntries)
+            {
+                //Find all Dinero entries that match the amount of current bank entry, that isn't "Balanced" yet.
+                var foundDineroEntry = dineroEntries.FirstOrDefault(x => x.Amount == bankEntry.Amount && x.Status == EntryStatus.Unbalanced);
+                
+                if (foundDineroEntry != null)
+                {
+                    bankEntry.Status = EntryStatus.Balanced;
+                    foundDineroEntry.Status = EntryStatus.Balanced;
+                }
+            }
         }
     }
 }

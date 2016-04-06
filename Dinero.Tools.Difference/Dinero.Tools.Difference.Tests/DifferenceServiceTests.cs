@@ -11,24 +11,97 @@ namespace Dinero.Tools.Difference.Tests
     public class DifferenceServiceTests
     {
         [TestMethod]
-        public void FindDifferences_ValidListsWithOneMissingEntry_ReturnDataWithOneMissingEntry()
+        public void FindDifferences_OneMoreEntryInBank_ReturnOneFoundOnlyOnLocalAccount()
         {
             var differenceService   = new DifferenceService();
 
             var dineroEntries       = new List<EntryModel>()
             {
-                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1), Text = "Dinero Test entry 1" }
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)}
             };
 
             var bankEntries         = new List<EntryModel>()
             {
-                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1), Text = "Bank Test entry 1" },
-                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4), Text = "Bank Test entry 4" }
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4)}
             };
 
             var result = differenceService.FindDifferences(dineroEntries, bankEntries);
 
-            Assert.AreEqual(1, result.DifferenceEntries.Count());
+            Assert.AreEqual(1, result.OriginalBankEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(-25.00m, result.TotalDifference);
+        }
+
+        [TestMethod]
+        public void FindDifferences_OneMoreEntryInDinero_ReturnOneUnbalancedInDinero()
+        {
+            var differenceService = new DifferenceService();
+
+            var dineroEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4)}
+            };
+
+            var bankEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)}
+            };
+
+            var result = differenceService.FindDifferences(dineroEntries, bankEntries);
+
+            Assert.AreEqual(1, result.OriginalDineroEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(25.00m, result.TotalDifference);
+        }
+
+        [TestMethod]
+        public void FindDifferences_TwoMoreEntriesInBank_ReturnTwoUnbalacedInBank()
+        {
+            var differenceService = new DifferenceService();
+
+            var dineroEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4)}
+            };
+
+            var bankEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 35.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 45.00m, Date = DateTime.Now.AddDays(-1)},
+            };
+
+            var result = differenceService.FindDifferences(dineroEntries, bankEntries);
+
+            Assert.AreEqual(2, result.OriginalBankEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(1, result.OriginalDineroEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(-55.00m, result.TotalDifference);
+        }
+
+        [TestMethod]
+        public void FindDifferences_OneMoreEntryInBankWithSameAmount_ReturnOneUnbalacedInBank()
+        {
+            var differenceService = new DifferenceService();
+
+            var dineroEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4)}
+            };
+
+            var bankEntries = new List<EntryModel>()
+            {
+                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-1)},
+            };
+
+            var result = differenceService.FindDifferences(dineroEntries, bankEntries);
+
+            Assert.AreEqual(1, result.OriginalBankEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(0, result.OriginalDineroEntries.Count(x => x.Status == EntryStatus.Unbalanced));
+            Assert.AreEqual(-25.00m, result.TotalDifference);
         }
     }
 }
