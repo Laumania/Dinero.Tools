@@ -2,26 +2,35 @@
 //ViewBag.Title = "title";
 }
 
-<h2>Find differences</h2>
-<p>Nu kører det.</p>
+<div class="container theme-showcase" role="main">
 
-<div>
-    @using (Html.BeginForm("ShowDifferences", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-    {
-        @Html.AntiForgeryToken()
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <h1>Lad os kommer igang!</h1>
+        <p>Find de posteringer du mangler i Dinero.</p>
+    </div>
 
-        <div>
-            <p>Dinero Fil:</p>
-            <input type="file" id="DineroFile" name="dineroFile"/>
+    <div class="row">
+        <div class="col-md-12">
+            @using (Html.BeginForm("ShowDifferences", "Home", null, FormMethod.Post, new {enctype = "multipart/form-data"}))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="col-md-6">
+                    <p>Dinero Fil:</p>
+                    <input type="file" id="DineroFile" name="dineroFile"/>
+                </div>
+
+                <div class="col-md-6">
+                    <p>Bank Fil:</p>
+                    <input type="file" id="BankFile" name="bankFile"/>
+                </div>
+
+                <div>
+                    <input type="submit" value="Find differences" class="btn btn-primary" />    
+                </div>
+            }
         </div>
+    </div>
 
-        <div>
-            <p>Bank Fil:</p>
-            <input type="file" id="BankFile" name="bankFile"/>
-        </div>
-
-        <div>
-            <input type="submit" value="Find differences" />    
-        </div>
-    }
 </div>
