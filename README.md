@@ -1,4 +1,4 @@
-# Dinero.dk skruet op på 11
+# Her skruer vi Dinero.dk op på 11
 Måske kender du http://dinero.dk?
 Dinero er et virkelig godt og simpelt regnskabs program/service, til små virksomheder.
 
