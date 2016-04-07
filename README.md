@@ -1,17 +1,34 @@
 # Dinero.Tools
-En samling af små tools som hjælper der hvor Dinero har mangler. Ja, Dinero.dk er tæt på perfekt, men der mangler nogle features.
+Måske kender du http://dinero.dk?
+Dinero er et virkelig godt og simpelt regnskabs program/service, til små virksomheder.
 
-Website: http://dinero-difference-tool.azurewebsites.net/
+Dinero kan rigtig mange ting, men de kan naturligvis ikke implementere alle features og ønsker. Derfor har jeg lavet dette repo med små tools, som jeg personlig har brug for og savner i Dinero. 
 
-#Find de manglende bilag ved bankafstemning
-Projektet "Dinero.Tools.Difference" hjælper dig med at finde de bilag du mangler i Dinero.
+Forhåbentlig kan udviklerne ved Dinero så blive inspireret her, så vi kan få nogle fede features in i Dinero :P
 
-Disse findes ved at uploade et CSV udtræk fra Dinero fra din "Bank" konto, og et CSV udtræk fra dine rigtige konto i banken (ja total navneforvirring, når man ikke er revisor).
+Nok om det, nu skrev jeg "tools" i flertal... rent faktisk er det kun et tool som jeg står og mangler lige nu, men med det lille ekstra flertals "s", er der mulighed for at lægge flere i hvis det skulle blive nødvendigt.
 
-I dag gøres det manuelt, således: https://dinero.dk/support/bankafstemning-hvordan-afstemmer-jeg-banken/
+Men hvad er det så, du finder her, tænker du?
 
+#Find de manglende bilag i Dinero.dk ved bankafstemning
+http://dinero-difference-tool.azurewebsites.net/
+
+Når du laver regnskab har du nogen gange en difference mellem hvad Dinero mener der skal stå i din bank, og hvad din bank reelt siger. Jo flere bilag du har, jo sværer er det at finde frem til hvor denne difference kommer fra.
+
+Det er det problem det her tool forsøger at hjælpe med.
+
+Hvis du vil gøre det manualet kan det gøres således:
+https://dinero.dk/support/bankafstemning-hvordan-afstemmer-jeg-banken/
+
+#Forslag eller fejl?
+Finder du fejl, mangler eller har du en ide til noget der mangler, så opret et issue her på Github:
+https://github.com/Laumania/Dinero.Tools/issues
+
+#Udvikler?
+Er du udvikler, skal du være velkommen til at sende pull requests med forslag :)
 
 #Tekniske spidsfindigheder
 - Visual Studio 2015
 - .NET 4.5.2
-- Moq https://github.com/Moq
+- UnitTest
+- FileHelpers .NET (Lib til let at læse CSV filer)
