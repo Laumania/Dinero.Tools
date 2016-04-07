@@ -29,6 +29,7 @@ Er du udvikler, skal du være velkommen til at sende pull requests med forslag :
 
 #Tekniske spidsfindigheder
 - Visual Studio 2015
-- .NET 4.5.2
+- C# .NET 4.5.2
+- ASP.NET MVC 5
 - UnitTest
 - FileHelpers .NET (Lib til let at læse CSV filer)
