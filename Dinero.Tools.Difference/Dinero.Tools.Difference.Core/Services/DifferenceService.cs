@@ -14,12 +14,43 @@ namespace Dinero.Tools.Difference.Core.Services
 
             CalculateAndSetEntryStatus(dineroEntries, bankEntries);
 
+            result.DifferenceEntryModels    = GetDirrenceEntryModel(dineroEntries, bankEntries);
             result.OriginalDineroEntries    = dineroEntries;
             result.OriginalBankEntries      = bankEntries;
-            result.TotalBank                = bankEntries.Max(x => x.Saldo);
-            result.TotalDinero              = dineroEntries.Max(x => x.Saldo);
+            result.TotalBank                = bankEntries.OrderByDescending(x => x.Date).First().Saldo;
+            result.TotalDinero              = dineroEntries.OrderByDescending(x => x.Date).First().Saldo;
             result.TotalDifference          = result.TotalDinero - result.TotalBank;
 
+            return result;
+        }
+
+        private IEnumerable<DifferenceEntryModel> GetDirrenceEntryModel(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
+        {
+            var result = new List<DifferenceEntryModel>();
+            foreach (var dineroEntry in dineroEntries)
+            {
+                var foundBankEntry = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.Dirty == false);
+                if (foundBankEntry != null)
+                {
+                    result.Add(new DifferenceEntryModel()
+                    {
+                        BankEntry   = foundBankEntry,
+                        DineroEntry = dineroEntry,
+                        Status      = EntryStatus.Balanced
+                    });
+                    foundBankEntry.Dirty = true;
+                }
+                else
+                {
+                    result.Add(new DifferenceEntryModel()
+                    {
+                        BankEntry = null,
+                        DineroEntry = dineroEntry,
+                        Status = EntryStatus.Unbalanced
+                    });
+                }
+                dineroEntry.Dirty = true;
+            }
             return result;
         }
 

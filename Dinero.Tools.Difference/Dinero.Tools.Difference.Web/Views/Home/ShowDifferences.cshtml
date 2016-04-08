@@ -18,60 +18,31 @@
     </div>
 
     <div class="row">
-        <div class="col-md-6">
-            <h2>Bank</h2>
-
-            <table class="table table-striped table-hover table-condensed">
+        <div class="col-md-12">
+            <table class="table table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th class="col-md-2">Dato</th>
-                        <th class="col-md-6">Tekst</th>
-                        <th class="col-md-3">Beløb</th>
+                        <th class="col-md-2 bg-info">Dato (Dinero)</th>
+                        <th class="col-md-2 bg-info">Tekst (Dinero)</th>
+                        <th class="col-md-2 bg-info">Beløb (Dinero)</th>
+                        <th class="col-md-1 bg-warning">Dato (bank)</th>
+                        <th class="col-md-2 bg-warning">Tekst (bank)</th>
+                        <th class="col-md-2 bg-warning">Beløb (bank)</th>
                         <th class="col-md-1">Afstemt</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var bankEntry in @Model.DifferenceResult.OriginalBankEntries.OrderByDescending(x => x.Date))
+                    @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.DineroEntry.Date))
                     {
-                        <tr>
-                            <td>@bankEntry.Date.ToString("dd-MM-yyyy")</td>
-                            <td>@bankEntry.Text</td>
-                            <td>@bankEntry.Amount.ToString("C")</td>
+                        <tr class="@(diffEntry.Status == EntryStatus.Balanced ? "success" : "danger" )">
+                            <td>@diffEntry.DineroEntry.Date.ToString("dd-MM-yyyy")</td>
+                            <td>@diffEntry.DineroEntry.Text</td>
+                            <td>@diffEntry.DineroEntry.Amount.ToString("C")</td>
+                            <td>@(diffEntry.BankEntry?.Date.ToString("dd-MM-yyyy"))</td>
+                            <td>@(diffEntry.BankEntry?.Text)</td>
+                            <td>@(diffEntry.BankEntry?.Amount.ToString("C"))</td>
                             <td>
-                                @if (bankEntry.Status == EntryStatus.Balanced)
-                                {
-                                    <span class="label label-success">Ja</span>
-                                }
-                                else
-                                {
-                                    <span class="label label-danger">Nej</span>
-                                }
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-        <div class="col-md-6">
-            <h2>Dinero</h2>
-            <table class="table table-striped table-hover table-condensed">
-                <thead>
-                    <tr>
-                        <th class="col-md-2">Dato</th>
-                        <th class="col-md-6">Tekst</th>
-                        <th class="col-md-3">Beløb</th>
-                        <th class="col-md-1">Afstemt</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var dineroEntry in @Model.DifferenceResult.OriginalDineroEntries.OrderByDescending(x => x.Date))
-            {
-                        <tr>
-                            <td>@dineroEntry.Date.ToString("dd-MM-yyyy")</td>
-                            <td>@dineroEntry.Text</td>
-                            <td>@dineroEntry.Amount.ToString("C")</td>
-                            <td>
-                                @if (dineroEntry.Status == EntryStatus.Balanced)
+                                @if (diffEntry.Status == EntryStatus.Balanced)
                                 {
                                     <span class="label label-success">Ja</span>
                                 }
@@ -86,4 +57,5 @@
             </table>
         </div>
     </div>
+
 </div>

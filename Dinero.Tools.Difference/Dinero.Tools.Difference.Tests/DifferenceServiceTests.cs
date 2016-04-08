@@ -22,8 +22,8 @@ namespace Dinero.Tools.Difference.Tests
 
             var bankEntries         = new List<EntryModel>()
             {
-                new EntryModel() { Amount = 100.00m, Date = DateTime.Now.AddDays(-1)},
-                new EntryModel() { Amount = 25.00m, Date = DateTime.Now.AddDays(-4)}
+                new EntryModel() { Amount = 100.00m, Saldo = 125.00m, Date = DateTime.Now.AddDays(-1)},
+                new EntryModel() { Amount = 25.00m, Saldo = 25.00m, Date = DateTime.Now.AddDays(-4)}
             };
 
             var result = differenceService.FindDifferences(dineroEntries, bankEntries);

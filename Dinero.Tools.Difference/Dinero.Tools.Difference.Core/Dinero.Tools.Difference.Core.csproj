@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Interfaces\IDataParser.cs" />
     <Compile Include="Interfaces\IDifferenceService.cs" />
+    <Compile Include="Models\DifferenceEntryModel.cs" />
     <Compile Include="Models\DifferenceResultModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

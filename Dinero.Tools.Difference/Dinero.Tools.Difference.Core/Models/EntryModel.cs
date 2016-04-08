@@ -11,6 +11,7 @@ namespace Dinero.Tools.Difference.Core.Models
         public decimal Saldo { get; set; }
         public DateTime Date { get; set; }
         public EntryStatus Status { get; set; } = EntryStatus.Unbalanced;
+        internal bool Dirty { get; set; }
     }
 
     public enum EntryStatus
