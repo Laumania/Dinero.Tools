@@ -2,35 +2,66 @@
 //ViewBag.Title = "title";
 }
 
-<div class="container theme-showcase" role="main">
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <h1>Lad os kommer igang!</h1>
-        <p>Find de posteringer du mangler i Dinero.</p>
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <img class="img-responsive" src="/img/profile.png" alt="">
+                <div class="intro-text">
+                    <span class="name">Find differencen</span>
+                    <hr class="star-light">
+                    <span class="skills">Find de manglende bilag i Dinero.dk ved bankafstemning</span>
+                </div>
+            </div>
+        </div>
     </div>
+</header>
+
+<div class="container" role="main">
+
+    <h1>Stemmer banken ikke?</h1>
+    <p>Så skal du ind og finde fejlen mellem, hvad der rent faktisk er trukket/indsat i banken, og hvad du har bogført.</p>
+    <p>I daglig tale kaldes dette en bankafstemning.</p>
+
 
     <div class="row">
         <div class="col-md-12">
-            @using (Html.BeginForm("ShowDifferences", "Home", null, FormMethod.Post, new {enctype = "multipart/form-data"}))
+            @using (Html.BeginForm("ShowDifferences", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
             {
                 @Html.AntiForgeryToken()
 
                 <div class="col-md-6">
-                    <p>Dinero Fil:</p>
+                    <em>Dinero.dk -> Regnskab -> Kontoplan -> Bank (55000) -> Posteringer -> Download kontokort</em>
+                    <br/>
+                    <label for="DineroFile">Dinero file:</label>
                     <input type="file" id="DineroFile" name="dineroFile"/>
                 </div>
 
                 <div class="col-md-6">
                     <p>Bank Fil:</p>
-                    <input type="file" id="BankFile" name="bankFile"/>
+                    <em>OBS: Er kun testet med Nordea CSV fil.</em>
+                    <input type="file" id="BankFile" name="bankFile" />
                 </div>
 
-                <div>
-                    <input type="submit" value="Find differences" class="btn btn-primary" />    
+                <p>
+                    Når begge filer er valgt trykker du på "Find differencer".
+                    Herefter uploades begge filer til serveren, hvor differencerne markeres.
+                </p>
+                <p>
+                    Hverken Dinero eller Bank filen gemmes på serveren, og vises kun for dig.
+                </p>
+
+                <div class="text-right">
+                    <input type="submit" value="Find differencer" class="btn btn-primary" />
                 </div>
             }
         </div>
     </div>
 
+    <div class="row">
+        <div class="col-md-12">
+            <p>&nbsp;</p>
+        </div>
+    </div>
 </div>

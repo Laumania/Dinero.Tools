@@ -5,16 +5,16 @@
 //ViewBag.Title = "title";
 }
 
-<div class="container theme-showcase" role="main">
+<div class="container" role="main">
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <h1>Se hvad vi fandt...</h1>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Se hvad vi fandt...</h1>
 
-        <p>Bank Saldo: @Model.DifferenceResult.TotalBank.ToString("C")</p>
-        <p>Dinero Saldo: @Model.DifferenceResult.TotalDinero.ToString("C")</p>
-        <p>Difference: @Model.DifferenceResult.TotalDifference.ToString("C")</p>
-
+            <p>Bank Saldo: @Model.DifferenceResult.TotalBank.ToString("C")</p>
+            <p>Dinero Saldo: @Model.DifferenceResult.TotalDinero.ToString("C")</p>
+            <p>Difference: @Model.DifferenceResult.TotalDifference.ToString("C")</p>
+        </div>
     </div>
 
     <div class="row">
@@ -22,26 +22,31 @@
             <table class="table table-bordered table-hover table-condensed">
                 <thead>
                     <tr>
-                        <th class="col-md-2 bg-info">Dato (Dinero)</th>
-                        <th class="col-md-2 bg-info">Tekst (Dinero)</th>
-                        <th class="col-md-2 bg-info">Beløb (Dinero)</th>
-                        <th class="col-md-1 bg-warning">Dato (bank)</th>
-                        <th class="col-md-2 bg-warning">Tekst (bank)</th>
-                        <th class="col-md-2 bg-warning">Beløb (bank)</th>
+                        <th colspan="3">Dinero posteringer</th>
+                        <th colspan="4">Bank posteringer</th>
+                    </tr>
+                    <tr>
+                        <th class="col-md-2">Dato</th>
+                        <th class="col-md-2">Tekst</th>
+                        <th class="col-md-2">Beløb</th>
+                        <th class="col-md-1">Dato</th>
+                        <th class="col-md-2">Tekst</th>
+                        <th class="col-md-2">Beløb</th>
                         <th class="col-md-1">Afstemt</th>
                     </tr>
                 </thead>
                 <tbody>
+
                     @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.DineroEntry.Date))
                     {
-                        <tr class="@(diffEntry.Status == EntryStatus.Balanced ? "success" : "danger" )">
+                        <tr class="@(diffEntry.Status == EntryStatus.Balanced ? "" : "danger" )">
                             <td>@diffEntry.DineroEntry.Date.ToString("dd-MM-yyyy")</td>
                             <td>@diffEntry.DineroEntry.Text</td>
-                            <td>@diffEntry.DineroEntry.Amount.ToString("C")</td>
+                            <td class="text-right">@diffEntry.DineroEntry.Amount.ToString("C")</td>
                             <td>@(diffEntry.BankEntry?.Date.ToString("dd-MM-yyyy"))</td>
                             <td>@(diffEntry.BankEntry?.Text)</td>
-                            <td>@(diffEntry.BankEntry?.Amount.ToString("C"))</td>
-                            <td>
+                            <td class="text-right">@(diffEntry.BankEntry?.Amount.ToString("C"))</td>
+                            <td class="text-center">
                                 @if (diffEntry.Status == EntryStatus.Balanced)
                                 {
                                     <span class="label label-success">Ja</span>
