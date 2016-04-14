@@ -11,5 +11,11 @@ namespace Dinero.Tools.Difference.Core.Models
         public EntryModel DineroEntry { get; set; }
         public EntryModel BankEntry { get; set; }
         public EntryStatus Status { get; set; } = EntryStatus.Unbalanced;
+
+
+        public DateTime Date
+        {
+            get { return DineroEntry?.Date ?? BankEntry.Date; }
+        }
     }
 }

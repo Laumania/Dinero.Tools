@@ -37,12 +37,12 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.DineroEntry.Date))
+                    @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.Date))
                     {
                         <tr class="@(diffEntry.Status == EntryStatus.Balanced ? "" : "danger" )">
-                            <td>@diffEntry.DineroEntry.Date.ToString("dd-MM-yyyy")</td>
-                            <td>@diffEntry.DineroEntry.Text</td>
-                            <td class="text-right">@diffEntry.DineroEntry.Amount.ToString("C")</td>
+                            <td>@(diffEntry.DineroEntry?.Date.ToString("dd-MM-yyyy"))</td>
+                            <td>@(diffEntry.DineroEntry?.Text)</td>
+                            <td class="text-right">@(diffEntry.DineroEntry?.Amount.ToString("C"))</td>
                             <td>@(diffEntry.BankEntry?.Date.ToString("dd-MM-yyyy"))</td>
                             <td>@(diffEntry.BankEntry?.Text)</td>
                             <td class="text-right">@(diffEntry.BankEntry?.Amount.ToString("C"))</td>

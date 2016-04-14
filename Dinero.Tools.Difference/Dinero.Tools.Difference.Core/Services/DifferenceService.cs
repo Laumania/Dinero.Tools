@@ -14,7 +14,7 @@ namespace Dinero.Tools.Difference.Core.Services
 
             CalculateAndSetEntryStatus(dineroEntries, bankEntries);
 
-            result.DifferenceEntryModels    = GetDirrenceEntryModel(dineroEntries, bankEntries);
+            result.DifferenceEntryModels    = GetDifferenceEntryModels(dineroEntries, bankEntries);
             result.OriginalDineroEntries    = dineroEntries;
             result.OriginalBankEntries      = bankEntries;
             result.TotalBank                = bankEntries.OrderByDescending(x => x.Date).First().Saldo;
@@ -24,7 +24,7 @@ namespace Dinero.Tools.Difference.Core.Services
             return result;
         }
 
-        private IEnumerable<DifferenceEntryModel> GetDirrenceEntryModel(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
+        private IEnumerable<DifferenceEntryModel> GetDifferenceEntryModels(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
             var result = new List<DifferenceEntryModel>();
             foreach (var dineroEntry in dineroEntries)
@@ -51,6 +51,19 @@ namespace Dinero.Tools.Difference.Core.Services
                 }
                 dineroEntry.Dirty = true;
             }
+
+            //Add all bankentries not used
+            foreach (var bankEntry in bankEntries.Where(x => x.Dirty == false))
+            {
+                result.Add(new DifferenceEntryModel()
+                {
+                    BankEntry = bankEntry,
+                    DineroEntry = null,
+                    Status = EntryStatus.Unbalanced
+                });
+                bankEntry.Dirty = true;
+            }
+
             return result;
         }
 
