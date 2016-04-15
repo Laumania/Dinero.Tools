@@ -1,4 +1,4 @@
-var Microsoft;
+﻿var Microsoft;
 (function (Microsoft) {
     var ApplicationInsights;
     (function (ApplicationInsights) {
@@ -243,7 +243,7 @@ var Microsoft;
                 return Object.prototype.toString.call(obj) === "[object Error]";
             };
             Util.isDate = function (obj) {
-                return Object.prototype.toString.call(obj) === "[object Date]";
+                return Object.prototype.toString.call(obj) === "[object RelevantDate]";
             };
             Util.toISOStringForIE8 = function (date) {
                 if (Util.isDate(date)) {

@@ -3,7 +3,7 @@ using System.Diagnostics;
 
 namespace Dinero.Tools.Difference.Core.Models
 {
-    [DebuggerDisplay("Amount: {Amount}, Saldo: {Saldo}, Date: {Date}, Text: {Text}")]
+    [DebuggerDisplay("Amount: {Amount}, Saldo: {Saldo}, RelevantDate: {Date}, Text: {Text}")]
     public class EntryModel
     {
         public string Text { get; set; }

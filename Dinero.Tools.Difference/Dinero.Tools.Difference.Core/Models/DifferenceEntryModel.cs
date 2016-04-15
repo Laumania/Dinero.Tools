@@ -12,7 +12,7 @@ namespace Dinero.Tools.Difference.Core.Models
         public EntryModel BankEntry { get; set; }
         public DifferenceEntryStates State { get; set; } = DifferenceEntryStates.Unbalanced;
         
-        public DateTime Date
+        public DateTime RelevantDate
         {
             get { return DineroEntry?.Date ?? BankEntry.Date; }
         }

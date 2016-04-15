@@ -24,35 +24,39 @@ namespace Dinero.Tools.Difference.Core.Services
         private IEnumerable<DifferenceEntryModel> GetDifferenceEntryModels(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
             var result = new List<DifferenceEntryModel>();
+
             foreach (var dineroEntry in dineroEntries)
             {
-                var foundBankEntry = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.State == EntryModelStates.Unprocessed);
+                var foundBankEntry  = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.State == EntryModelStates.Unprocessed);
+                var diffEntryModel  = new DifferenceEntryModel()
+                {
+                    BankEntry   = foundBankEntry,
+                    DineroEntry = dineroEntry
+                };
+                
                 if (foundBankEntry != null)
                 {
-                    result.Add(new DifferenceEntryModel()
-                    {
-                        BankEntry   = foundBankEntry,
-                        DineroEntry = dineroEntry,
-                        State      = DifferenceEntryStates.Balanced
-                    });
+                    diffEntryModel.State = DifferenceEntryStates.Balanced;
                     foundBankEntry.State = EntryModelStates.Processed;
                 }
                 else
                 {
-                    result.Add(new DifferenceEntryModel()
-                    {
-                        BankEntry = null,
-                        DineroEntry = dineroEntry,
-                        State = DifferenceEntryStates.Unbalanced
-                    });
+                    diffEntryModel.State = DifferenceEntryStates.Unbalanced;
                 }
                 dineroEntry.State = EntryModelStates.Processed;
+                result.Add(diffEntryModel);
             }
 
-            //Add all bankentries not used
+            AddAllUnprocessedBankEntries(result, bankEntries);
+
+            return result;
+        }
+
+        private void AddAllUnprocessedBankEntries(List<DifferenceEntryModel> differences, IEnumerable<EntryModel> bankEntries)
+        {
             foreach (var bankEntry in bankEntries.Where(x => x.State == EntryModelStates.Unprocessed))
             {
-                result.Add(new DifferenceEntryModel()
+                differences.Add(new DifferenceEntryModel()
                 {
                     BankEntry = bankEntry,
                     DineroEntry = null,
@@ -60,8 +64,6 @@ namespace Dinero.Tools.Difference.Core.Services
                 });
                 bankEntry.State = EntryModelStates.Processed;
             }
-
-            return result;
         }
     }
 }
