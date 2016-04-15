@@ -11,7 +11,7 @@ Nok om det, nu skrev jeg "tools" i flertal... rent faktisk er det kun et tool so
 Men hvad er det så, du finder her, tænker du?
 
 #Find de manglende bilag i Dinero.dk ved bankafstemning
-http://dinero-difference-tool.azurewebsites.net/
+http://dinero-difference.laumania.net/
 
 Når du laver regnskab har du nogen gange en difference mellem hvad Dinero mener der skal stå i din bank, og hvad din bank reelt siger. Jo flere bilag du har, jo sværer er det at finde frem til hvor denne difference kommer fra.
 
