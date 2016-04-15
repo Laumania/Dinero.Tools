@@ -15,8 +15,7 @@ namespace Dinero.Tools.Difference.Core.Services
             CalculateAndSetEntryStatus(dineroEntries, bankEntries);
 
             result.DifferenceEntryModels    = GetDifferenceEntryModels(dineroEntries, bankEntries);
-            result.OriginalDineroEntries    = dineroEntries;
-            result.OriginalBankEntries      = bankEntries;
+            
             result.TotalBank                = bankEntries.OrderByDescending(x => x.Date).First().Saldo;
             result.TotalDinero              = dineroEntries.OrderByDescending(x => x.Date).First().Saldo;
             result.TotalDifference          = result.TotalDinero - result.TotalBank;
