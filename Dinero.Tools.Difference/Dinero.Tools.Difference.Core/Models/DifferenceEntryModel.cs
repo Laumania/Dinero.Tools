@@ -21,6 +21,7 @@ namespace Dinero.Tools.Difference.Core.Models
     public enum DifferenceEntryStates
     {
         Unbalanced = 1,
-        Balanced = 2
+        Balanced = 2,
+        SelfCancelling = 3
     }
 }

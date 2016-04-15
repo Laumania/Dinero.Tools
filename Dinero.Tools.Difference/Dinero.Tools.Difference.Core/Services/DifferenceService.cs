@@ -41,7 +41,14 @@ namespace Dinero.Tools.Difference.Core.Services
                 }
                 else
                 {
-                    diffEntryModel.State = DifferenceEntryStates.Unbalanced;
+                    //if (IsSelfCancelling(dineroEntry, dineroEntries))
+                    //{
+                    //    diffEntryModel.State = DifferenceEntryStates.SelfCancelling;
+                    //}   
+                    //else
+                    {
+                        diffEntryModel.State = DifferenceEntryStates.Unbalanced;
+                    }
                 }
                 dineroEntry.State = EntryModelStates.Processed;
                 result.Add(diffEntryModel);
@@ -50,6 +57,20 @@ namespace Dinero.Tools.Difference.Core.Services
             AddAllUnprocessedBankEntries(result, bankEntries);
 
             return result;
+        }
+
+        private bool IsSelfCancelling(EntryModel dineroEntry, IEnumerable<EntryModel> dineroEntries)
+        {
+            var counterAmount = dineroEntry.Amount*-1;
+            var foundEntryWithCounterAmount = dineroEntries.FirstOrDefault(x => x.State == EntryModelStates.Unprocessed && x.Amount == counterAmount);
+
+            if (foundEntryWithCounterAmount != null)
+            {
+                //foundEntryWithCounterAmount.State = EntryModelStates.Processed;
+                return true;
+            }
+
+            return false;
         }
 
         private void AddAllUnprocessedBankEntries(List<DifferenceEntryModel> differences, IEnumerable<EntryModel> bankEntries)

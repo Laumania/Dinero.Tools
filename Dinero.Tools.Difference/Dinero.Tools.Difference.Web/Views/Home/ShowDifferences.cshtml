@@ -1,9 +1,24 @@
-﻿@using Dinero.Tools.Difference.Core.Models
+﻿@using System.Diagnostics.Eventing.Reader
+@using Dinero.Tools.Difference.Core.Models
 @model Dinero.Tools.Difference.Web.ViewModels.ShowDifferencesViewModel
 
-@{
-//ViewBag.Title = "title";
+@helper GetDifferenceRowClass(DifferenceEntryStates state)
+{
+    if (state == DifferenceEntryStates.Unbalanced)
+    {
+            @("danger")
+    }
+    else if (state == DifferenceEntryStates.SelfCancelling)
+    {
+            @("warning")
+    }
+    else
+    {
+            @("")
+    }
 }
+
+
 
 <div class="container" role="main">
 
@@ -38,7 +53,7 @@
 
                     @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.RelevantDate))
                     {
-                        <tr class="@(diffEntry.State == DifferenceEntryStates.Balanced ? "" : "danger" )">
+                        <tr class="@GetDifferenceRowClass(diffEntry.State)">
                             <td>@(diffEntry.DineroEntry?.Date.ToString("dd-MM-yyyy"))</td>
                             <td>@(diffEntry.DineroEntry?.Text)</td>
                             <td class="text-right">@(diffEntry.DineroEntry?.Amount.ToString("C"))</td>
