@@ -3,20 +3,19 @@ using System.Diagnostics;
 
 namespace Dinero.Tools.Difference.Core.Models
 {
-    [DebuggerDisplay("Status: {Status}, Amount: {Amount}, Saldo: {Saldo}, Date: {Date}, Text: {Text}")]
+    [DebuggerDisplay("Amount: {Amount}, Saldo: {Saldo}, Date: {Date}, Text: {Text}")]
     public class EntryModel
     {
         public string Text { get; set; }
         public decimal Amount { get; set; }
         public decimal Saldo { get; set; }
         public DateTime Date { get; set; }
-        public EntryStatus Status { get; set; } = EntryStatus.Unbalanced;
-        internal bool Dirty { get; set; }
+        public EntryModelStates State { get; set; } = EntryModelStates.Unprocessed;
     }
 
-    public enum EntryStatus
+    public enum EntryModelStates
     {
-        Unbalanced = 1,
-        Balanced = 2
+        Unprocessed = 1,
+        Processed = 2
     }
 }

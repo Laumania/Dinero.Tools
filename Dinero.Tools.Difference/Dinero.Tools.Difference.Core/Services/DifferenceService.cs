@@ -11,9 +11,7 @@ namespace Dinero.Tools.Difference.Core.Services
         public DifferenceResultModel FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
             var result                      = new DifferenceResultModel();
-
-            CalculateAndSetEntryStatus(dineroEntries, bankEntries);
-
+            
             result.DifferenceEntryModels    = GetDifferenceEntryModels(dineroEntries, bankEntries);
             
             result.TotalBank                = bankEntries.OrderByDescending(x => x.Date).First().Saldo;
@@ -28,16 +26,16 @@ namespace Dinero.Tools.Difference.Core.Services
             var result = new List<DifferenceEntryModel>();
             foreach (var dineroEntry in dineroEntries)
             {
-                var foundBankEntry = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.Dirty == false);
+                var foundBankEntry = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.State == EntryModelStates.Unprocessed);
                 if (foundBankEntry != null)
                 {
                     result.Add(new DifferenceEntryModel()
                     {
                         BankEntry   = foundBankEntry,
                         DineroEntry = dineroEntry,
-                        Status      = EntryStatus.Balanced
+                        State      = DifferenceEntryStates.Balanced
                     });
-                    foundBankEntry.Dirty = true;
+                    foundBankEntry.State = EntryModelStates.Processed;
                 }
                 else
                 {
@@ -45,40 +43,25 @@ namespace Dinero.Tools.Difference.Core.Services
                     {
                         BankEntry = null,
                         DineroEntry = dineroEntry,
-                        Status = EntryStatus.Unbalanced
+                        State = DifferenceEntryStates.Unbalanced
                     });
                 }
-                dineroEntry.Dirty = true;
+                dineroEntry.State = EntryModelStates.Processed;
             }
 
             //Add all bankentries not used
-            foreach (var bankEntry in bankEntries.Where(x => x.Dirty == false))
+            foreach (var bankEntry in bankEntries.Where(x => x.State == EntryModelStates.Unprocessed))
             {
                 result.Add(new DifferenceEntryModel()
                 {
                     BankEntry = bankEntry,
                     DineroEntry = null,
-                    Status = EntryStatus.Unbalanced
+                    State = DifferenceEntryStates.Unbalanced
                 });
-                bankEntry.Dirty = true;
+                bankEntry.State = EntryModelStates.Processed;
             }
 
             return result;
-        }
-
-        private void CalculateAndSetEntryStatus(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
-        {
-            foreach (var bankEntry in bankEntries)
-            {
-                //Find all Dinero entries that match the amount of current bank entry, that isn't "Balanced" yet.
-                var foundDineroEntry = dineroEntries.FirstOrDefault(x => x.Amount == bankEntry.Amount && x.Status == EntryStatus.Unbalanced);
-                
-                if (foundDineroEntry != null)
-                {
-                    bankEntry.Status = EntryStatus.Balanced;
-                    foundDineroEntry.Status = EntryStatus.Balanced;
-                }
-            }
         }
     }
 }
