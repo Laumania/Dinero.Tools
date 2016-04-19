@@ -37,13 +37,13 @@
                     <h2>1. Vælg Dinero fil</h2>
                     <em>Dinero.dk -> Regnskab -> Kontoplan -> Bank (55000) -> Posteringer -> Download kontokort</em>
 
-                    <input type="file" id="DineroFile" name="dineroFile"/>
+                    <input type="file" class="btn btn-default" id="DineroFile" name="dineroFile"/>
                 </div>
 
                 <div class="col-md-4">
                     <h2>2. Vælg bank fil</h2>
                     <em>OBS: Er kun testet med Nordea CSV fil.</em>
-                    <input type="file" id="BankFile" name="bankFile"/>
+                    <input type="file" class="btn btn-default" id="BankFile" name="bankFile"/>
                 </div>
 
                 <div class="col-md-4">
@@ -54,11 +54,11 @@
         </div>
     </div>
 
-    
+
 
     <div class="row">
         <div class="col-md-12">
-            <hr />
+            <hr/>
 
             <p>
                 Herefter uploades begge filer til serveren, hvor differencerne markeres.
@@ -66,7 +66,7 @@
             <p>
                 Hverken Dinero eller Bank filen gemmes på serveren, og vises kun for dig.
             </p>
-           
+
         </div>
     </div>
 
@@ -78,3 +78,30 @@
         </div>
     </div>
 </div>
+
+
+<section class="success" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Hvordan virker det?</h2>
+                <hr class="star-light">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-lg-offset-2">
+                <p>Værktøjet fungerer på den måde, at hver enkelt postering hhv. Dinero filen sammenholdes med filen fra banken. Værktøjet forsøger så an finde ud af hvilke posteringer der matcher, og dem der ikke gør angiver dem som "differencer".</p>
+            </div>
+            <div class="col-lg-4">
+                <p>Så er det op til dig at vurderer hvilke reelt er differencer og skaber problemer for din afstemning.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <hr />
+                <p>Værktøjet arbejder udelukkende ud fra de to filer du angiver. Der er altså ingen integration til din Dinero.dk konto. Intet ændres og intet læses derfra.</p>
+            </div>
+        </div>
+    </div>
+</section>
