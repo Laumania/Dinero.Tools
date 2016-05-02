@@ -14,10 +14,12 @@ namespace Dinero.Tools.Difference.DataParsers
             var parseResult = engine.ReadString(data);
             var result      = new List<EntryModel>();
 
-            foreach (var nordeaEntry in parseResult)
+            for (var index = 0; index < parseResult.Length; index++)
             {
+                var nordeaEntry = parseResult[index];
                 var entryModel = new EntryModel()
                 {
+                    Index   = parseResult.Length - index,
                     Amount  = nordeaEntry.Amount,
                     Date    = nordeaEntry.Date,
                     Text    = nordeaEntry.Text,

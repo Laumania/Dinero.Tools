@@ -14,8 +14,8 @@ namespace Dinero.Tools.Difference.Core.Services
             
             result.DifferenceEntryModels    = GetDifferenceEntryModels(dineroEntries, bankEntries);
             
-            result.TotalBank                = bankEntries.OrderByDescending(x => x.Date).First().Saldo;
-            result.TotalDinero              = dineroEntries.OrderByDescending(x => x.Date).First().Saldo;
+            result.TotalBank                = GetLastestEntryEqualOrLowerThanToday(bankEntries).Saldo;
+            result.TotalDinero              = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
             result.TotalDifference          = result.TotalDinero - result.TotalBank;
 
             return result;
@@ -85,6 +85,12 @@ namespace Dinero.Tools.Difference.Core.Services
                 });
                 bankEntry.State = EntryModelStates.Processed;
             }
+        }
+
+        private EntryModel GetLastestEntryEqualOrLowerThanToday(IEnumerable<EntryModel> entries)
+        {
+            var entry = entries.Where(x => x.Date <= DateTime.Today).OrderByDescending(x => x.Index).First();
+            return entry;
         }
     }
 }
