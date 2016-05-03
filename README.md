@@ -1,4 +1,6 @@
 # Her skruer vi Dinero.dk op på 11
+
+[![Join the chat at https://gitter.im/Laumania/Dinero.Tools](https://badges.gitter.im/Laumania/Dinero.Tools.svg)](https://gitter.im/Laumania/Dinero.Tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Måske kender du http://dinero.dk?
 Dinero er et virkelig godt og simpelt regnskabs program/service, til små virksomheder.
 
