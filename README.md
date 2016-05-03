@@ -1,6 +1,4 @@
 # Her skruer vi Dinero.dk op på 11
-
-[![Join the chat at https://gitter.im/Laumania/Dinero.Tools](https://badges.gitter.im/Laumania/Dinero.Tools.svg)](https://gitter.im/Laumania/Dinero.Tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Måske kender du http://dinero.dk?
 Dinero er et virkelig godt og simpelt regnskabs program/service, til små virksomheder.
 
@@ -25,6 +23,10 @@ https://dinero.dk/support/bankafstemning-hvordan-afstemmer-jeg-banken/
 #Forslag eller fejl?
 Finder du fejl, mangler eller har du en ide til noget der mangler, så opret et issue her på Github:
 https://github.com/Laumania/Dinero.Tools/issues
+
+Alternativt, så deltag i chatten, så tager vi en snak der:
+
+[![Join the chat at https://gitter.im/Laumania/Dinero.Tools](https://badges.gitter.im/Laumania/Dinero.Tools.svg)](https://gitter.im/Laumania/Dinero.Tools?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 #Udvikler?
 Er du udvikler, skal du være velkommen til at sende pull requests med forslag :)
