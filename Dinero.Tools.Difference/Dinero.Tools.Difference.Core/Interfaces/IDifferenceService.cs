@@ -5,6 +5,6 @@ namespace Dinero.Tools.Difference.Core.Interfaces
 {
     public interface IDifferenceService
     {
-        DifferenceResultModel FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries);
+        IEnumerable<DifferenceEntryModel> FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries);
     }
 }

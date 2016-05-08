@@ -3,7 +3,10 @@ using System.Diagnostics;
 
 namespace Dinero.Tools.Difference.Core.Models
 {
-    [DebuggerDisplay("Index: {Index}, Amount: {Amount}, Saldo: {Saldo}, RelevantDate: {Date}, Text: {Text}")]
+    /// <summary>
+    /// Represent the 'raw' entry from either Dinero or bank.
+    /// </summary>
+    [DebuggerDisplay("Index: {Index}, Amount: {Amount}, Saldo: {Saldo}, Date: {Date}, Text: {Text}")]
     public class EntryModel
     {
         /// <summary>
@@ -14,12 +17,5 @@ namespace Dinero.Tools.Difference.Core.Models
         public decimal Amount { get; set; }
         public decimal Saldo { get; set; }
         public DateTime Date { get; set; }
-        public EntryModelStates State { get; set; } = EntryModelStates.Unprocessed;
-    }
-
-    public enum EntryModelStates
-    {
-        Unprocessed = 1,
-        Processed = 2
     }
 }

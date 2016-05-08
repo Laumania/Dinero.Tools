@@ -26,9 +26,9 @@
         <div class="col-lg-12">
             <h1>Se hvad vi fandt...</h1>
 
-            <p>Bank Saldo: @Model.DifferenceResult.TotalBank.ToString("C")</p>
-            <p>Dinero Saldo: @Model.DifferenceResult.TotalDinero.ToString("C")</p>
-            <p>Difference: @Model.DifferenceResult.TotalDifference.ToString("C")</p>
+            <p>Bank Saldo: @Model.TotalBank.ToString("C")</p>
+            <p>Dinero Saldo: @Model.TotalDinero.ToString("C")</p>
+            <p>Difference: @Model.TotalDifference.ToString("C")</p>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach (var diffEntry in @Model.DifferenceResult.DifferenceEntryModels.OrderByDescending(x => x.RelevantDate))
+                    @foreach (var diffEntry in @Model.Differences.OrderByDescending(x => x.RelevantDate))
                     {
                         <tr class="@GetDifferenceRowClass(diffEntry.State)">
                             <td>@(diffEntry.DineroEntry?.Date.ToString("dd-MM-yyyy"))</td>

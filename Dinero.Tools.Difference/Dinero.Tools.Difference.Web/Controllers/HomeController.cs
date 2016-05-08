@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dinero.Tools.Difference.Core.Interfaces;
+using Dinero.Tools.Difference.Core.Models;
 using Dinero.Tools.Difference.Core.Services;
 using Dinero.Tools.Difference.DataParsers;
 using Dinero.Tools.Difference.Web.ViewModels;
@@ -40,10 +42,19 @@ namespace Dinero.Tools.Difference.Web.Controllers
 
                 var difService          = new DifferenceService();
 
-                viewModel.DifferenceResult = difService.FindDifferences(dineroEntries, bankEntries);
+                viewModel.Differences       = difService.FindDifferences(dineroEntries, bankEntries);
+                viewModel.TotalBank         = GetLastestEntryEqualOrLowerThanToday(bankEntries).Saldo;
+                viewModel.TotalDinero       = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
+                viewModel.TotalDifference   = viewModel.TotalDinero - viewModel.TotalBank;
             }
             
             return View(viewModel);
+        }
+
+        private EntryModel GetLastestEntryEqualOrLowerThanToday(IEnumerable<EntryModel> entries)
+        {
+            var entry = entries.Where(x => x.Date <= DateTime.Today).OrderByDescending(x => x.Index).First();
+            return entry;
         }
 
         private string GetFileContent(HttpPostedFileBase file)

@@ -9,6 +9,9 @@ namespace Dinero.Tools.Difference.Web.ViewModels
 {
     public class ShowDifferencesViewModel
     {
-        public DifferenceResultModel DifferenceResult { get; set; }
+        public IEnumerable<DifferenceEntryModel> Differences { get; set; }
+        public decimal TotalBank { get; set; }
+        public decimal TotalDinero { get; set; }
+        public decimal TotalDifference { get; set; }
     }
 }
