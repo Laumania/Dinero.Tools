@@ -8,26 +8,19 @@ namespace Dinero.Tools.Difference.Core.Services
 {
     public class DifferenceService : IDifferenceService
     {
-        public DifferenceResultModel FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
+        public IEnumerable<DifferenceEntryModel> FindDifferences(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
-            var result                      = new DifferenceResultModel();
-            
-            result.DifferenceEntryModels    = GetDifferenceEntryModels(dineroEntries, bankEntries);
-            
-            result.TotalBank                = GetLastestEntryEqualOrLowerThanToday(bankEntries).Saldo;
-            result.TotalDinero              = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
-            result.TotalDifference          = result.TotalDinero - result.TotalBank;
-
-            return result;
+            return GetDifferenceEntryModels(dineroEntries, bankEntries);
         }
 
         private IEnumerable<DifferenceEntryModel> GetDifferenceEntryModels(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
         {
-            var result = new List<DifferenceEntryModel>();
+            var result                  = new List<DifferenceEntryModel>();
+            var processedEntryModels    = new List<EntryModel>();
 
             foreach (var dineroEntry in dineroEntries)
             {
-                var foundBankEntry  = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && x.State == EntryModelStates.Unprocessed);
+                var foundBankEntry  = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && processedEntryModels.Contains(x) == false);
                 var diffEntryModel  = new DifferenceEntryModel()
                 {
                     BankEntry   = foundBankEntry,
@@ -37,45 +30,39 @@ namespace Dinero.Tools.Difference.Core.Services
                 if (foundBankEntry != null)
                 {
                     diffEntryModel.State = DifferenceEntryStates.Balanced;
-                    foundBankEntry.State = EntryModelStates.Processed;
+                    processedEntryModels.Add(foundBankEntry);
                 }
                 else
                 {
-                    //if (IsSelfCancelling(dineroEntry, dineroEntries))
-                    //{
-                    //    diffEntryModel.State = DifferenceEntryStates.SelfCancelling;
-                    //}   
-                    //else
-                    {
-                        diffEntryModel.State = DifferenceEntryStates.Unbalanced;
-                    }
+                    diffEntryModel.State = DifferenceEntryStates.Unbalanced;
                 }
-                dineroEntry.State = EntryModelStates.Processed;
+                processedEntryModels.Add(dineroEntry);
                 result.Add(diffEntryModel);
             }
 
-            AddAllUnprocessedBankEntries(result, bankEntries);
+            var unprocessedBankEntries = bankEntries.Except(processedEntryModels);
+            AddAllUnprocessedBankEntries(result, unprocessedBankEntries);
 
             return result;
         }
 
-        private bool IsSelfCancelling(EntryModel dineroEntry, IEnumerable<EntryModel> dineroEntries)
+        //private bool IsSelfCancelling(EntryModel dineroEntry, IEnumerable<EntryModel> dineroEntries)
+        //{
+        //    var counterAmount = dineroEntry.Amount*-1;
+        //    var foundEntryWithCounterAmount = dineroEntries.FirstOrDefault(x => x.State == EntryModelStates.Unprocessed && x.Amount == counterAmount);
+
+        //    if (foundEntryWithCounterAmount != null)
+        //    {
+        //        //foundEntryWithCounterAmount.State = EntryModelStates.Processed;
+        //        return true;
+        //    }
+
+        //    return false;
+        //}
+
+        private void AddAllUnprocessedBankEntries(List<DifferenceEntryModel> differences, IEnumerable<EntryModel> unprocessedBankEntries)
         {
-            var counterAmount = dineroEntry.Amount*-1;
-            var foundEntryWithCounterAmount = dineroEntries.FirstOrDefault(x => x.State == EntryModelStates.Unprocessed && x.Amount == counterAmount);
-
-            if (foundEntryWithCounterAmount != null)
-            {
-                //foundEntryWithCounterAmount.State = EntryModelStates.Processed;
-                return true;
-            }
-
-            return false;
-        }
-
-        private void AddAllUnprocessedBankEntries(List<DifferenceEntryModel> differences, IEnumerable<EntryModel> bankEntries)
-        {
-            foreach (var bankEntry in bankEntries.Where(x => x.State == EntryModelStates.Unprocessed))
+            foreach (var bankEntry in unprocessedBankEntries)
             {
                 differences.Add(new DifferenceEntryModel()
                 {
@@ -83,14 +70,7 @@ namespace Dinero.Tools.Difference.Core.Services
                     DineroEntry = null,
                     State = DifferenceEntryStates.Unbalanced
                 });
-                bankEntry.State = EntryModelStates.Processed;
             }
-        }
-
-        private EntryModel GetLastestEntryEqualOrLowerThanToday(IEnumerable<EntryModel> entries)
-        {
-            var entry = entries.Where(x => x.Date <= DateTime.Today).OrderByDescending(x => x.Index).First();
-            return entry;
         }
     }
 }
