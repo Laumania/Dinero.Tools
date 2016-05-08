@@ -23,3 +23,8 @@
     background-color: #e74c3c;
     color: white;
 }
+
+.table > tbody > tr.selfcancelling {
+    background-color: #f9f9f9;
+    color: #9a9a9a;
+}

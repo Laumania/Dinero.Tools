@@ -13,8 +13,30 @@ namespace Dinero.Tools.Difference.Core.Services
             var rawDifferenceModels = GetDifferenceEntryModels(dineroEntries, bankEntries);
 
             MarkFutureEntries(rawDifferenceModels);
+            MarkCounterEntries(rawDifferenceModels);
 
             return rawDifferenceModels;
+        }
+
+        private void MarkCounterEntries(IEnumerable<DifferenceEntryModel> rawDifferenceModels)
+        {
+            foreach (var differenceEntryModel in rawDifferenceModels)
+            {
+                if (differenceEntryModel.DineroEntry != null &&
+                    differenceEntryModel.DineroEntry.Text.StartsWith("Modpostering af: "))
+                {
+                    var counterText         = differenceEntryModel.DineroEntry.Text.Replace("Modpostering af: ", "");
+                    var counterAmount       = differenceEntryModel.DineroEntry.Amount*-1;
+                    var counterEntry        = rawDifferenceModels.FirstOrDefault(x => x?.DineroEntry?.Text == counterText &&
+                                                                                      x?.DineroEntry?.Amount == counterAmount && 
+                                                                                      x.State == DifferenceEntryStates.Unbalanced);
+                    if (counterEntry != null)
+                    {
+                        counterEntry.State          = DifferenceEntryStates.SelfCancelling;
+                        differenceEntryModel.State  = DifferenceEntryStates.SelfCancelling;
+                    }
+                }
+            }
         }
 
         private void MarkFutureEntries(IEnumerable<DifferenceEntryModel> rawDifferenceModels)
