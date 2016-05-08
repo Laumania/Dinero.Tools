@@ -4,22 +4,22 @@
 
 @helper GetDifferenceRowClass(DifferenceEntryStates state)
 {
-    if (state == DifferenceEntryStates.Unbalanced)
-    {
-            @("unbalanced")
-    }
-    else if (state == DifferenceEntryStates.SelfCancelling)
-    {
-            @("selfcancelling")
-    }
-    else if (state == DifferenceEntryStates.Future)
-    {
-            @("future")
-    }
-    else
-    {
-            @("")
-    }
+if (state == DifferenceEntryStates.Unbalanced)
+{
+        @("unbalanced")
+}
+else if (state == DifferenceEntryStates.SelfCancelling)
+{
+        @("selfcancelling")
+}
+else if (state == DifferenceEntryStates.Future)
+{
+        @("future")
+}
+else
+{
+        @("")
+}
 }
 
 
@@ -27,12 +27,23 @@
 <div class="container" role="main">
 
     <div class="row">
-        <div class="col-lg-12">
-            <h1>Se hvad vi fandt...</h1>
+        <div class="col-md-6">
+            <h1>Vi fandt følgende...</h1>
+        </div>
+    </div>
 
-            <p>Bank Saldo: @Model.TotalBank.ToString("C")</p>
-            <p>Dinero Saldo: @Model.TotalDinero.ToString("C")</p>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Dinero.dk</h2>
+            
+            <p>Saldo: @Model.TotalDinero.ToString("C")</p>
             <p>Difference: @Model.TotalDifference.ToString("C")</p>
+        </div>
+
+        <div class="col-md-6">
+            <h2>Bank</h2>
+            
+            <p>Saldo: @Model.TotalBank.ToString("C")</p>
         </div>
     </div>
 
