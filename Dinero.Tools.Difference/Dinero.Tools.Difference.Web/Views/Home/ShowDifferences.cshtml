@@ -6,11 +6,15 @@
 {
     if (state == DifferenceEntryStates.Unbalanced)
     {
-            @("danger")
+            @("unbalanced")
     }
     else if (state == DifferenceEntryStates.SelfCancelling)
     {
             @("warning")
+    }
+    else if (state == DifferenceEntryStates.Future)
+    {
+            @("future")
     }
     else
     {

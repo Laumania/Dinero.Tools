@@ -14,3 +14,12 @@
         padding-bottom: 20px;   
     }
 }
+
+.table > tbody > tr.future {
+    background-color: #CBCBCB;
+}
+
+.table > tbody > tr.unbalanced {
+    background-color: #e74c3c;
+    color: white;
+}

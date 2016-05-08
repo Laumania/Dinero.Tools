@@ -22,6 +22,7 @@ namespace Dinero.Tools.Difference.Core.Models
     {
         Unbalanced = 1,
         Balanced = 2,
-        SelfCancelling = 3
+        SelfCancelling = 3,
+        Future = 4
     }
 }

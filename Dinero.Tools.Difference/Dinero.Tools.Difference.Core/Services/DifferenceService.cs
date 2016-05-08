@@ -12,7 +12,18 @@ namespace Dinero.Tools.Difference.Core.Services
         {
             var rawDifferenceModels = GetDifferenceEntryModels(dineroEntries, bankEntries);
 
+            MarkFutureEntries(rawDifferenceModels);
+
             return rawDifferenceModels;
+        }
+
+        private void MarkFutureEntries(IEnumerable<DifferenceEntryModel> rawDifferenceModels)
+        {
+            foreach (var differenceEntryModel in rawDifferenceModels)
+            {
+                if(differenceEntryModel.RelevantDate.Date > DateTime.Now.Date)
+                    differenceEntryModel.State = DifferenceEntryStates.Future;
+            }
         }
 
         private IEnumerable<DifferenceEntryModel> GetDifferenceEntryModels(IEnumerable<EntryModel> dineroEntries, IEnumerable<EntryModel> bankEntries)
