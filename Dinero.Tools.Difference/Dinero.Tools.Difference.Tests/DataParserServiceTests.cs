@@ -7,10 +7,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dinero.Tools.Difference.Tests
 {
     [TestClass]
-    public class DataParseServiceTests
+    public class DataParserServiceTests
     {
         [TestMethod]
-        public void ResolveParser_DanskeBankData_ReturnsDanskeBankData()
+        public void Parse_DanskeBankData_ReturnsDanskeBankData()
         {
             var dataToParse = @"""Dato"";""Tekst"";""Beløb"";""Saldo"";""Status"";""Afstemt""
 
@@ -31,7 +31,7 @@ namespace Dinero.Tools.Difference.Tests
         }
 
         [TestMethod]
-        public void ResolveParser_JyskeBankData_ReturnsJyskeBankData()
+        public void Parse_JyskeBankData_ReturnsJyskeBankData()
         {
             var dataToParse = @"""Dato"";""Valør"";""Tekst"";"""";""Beløb"";""Saldo"";""Afstemt""
 ""04.02.2014"";""04.02.2014"";""02.02.14 WWW.NOGET-TEST.COM"";"""";""-79,00"";""4.353,11"";""nej"";""Til rådighed""
@@ -49,7 +49,7 @@ namespace Dinero.Tools.Difference.Tests
         }
 
         [TestMethod]
-        public void ResolveParser_InvalidData_ReturnsNull()
+        public void Parse_InvalidData_ReturnsNull()
         {
             var dataToParse = @"This is invalid CSV data.";
 
@@ -60,7 +60,7 @@ namespace Dinero.Tools.Difference.Tests
         }
 
         [TestMethod]
-        public void ResolveParser_DineroData_ReturnsNull()
+        public void Parse_DineroData_ReturnsNull()
         {
             var dataToParse = @"Konto;Kontonavn;Dato;Bilag;Bilagstype;Tekst;Momstype;Beløb;Saldo
                                 55000;Bank;2016-01-01;9;Køb;#Betalingsløsning - Quickpay;;-61,25;498309,26
