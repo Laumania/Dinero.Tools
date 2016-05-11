@@ -30,19 +30,21 @@ namespace Dinero.Tools.Difference.DataParsers
 
             return result;
         }
+
+        [DelimitedRecord(";"), IgnoreFirst(1)]
+        private class NordeaEntry
+        {
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public DateTime Date;
+            public string Text;
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public DateTime InterestDate;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Amount;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Saldo;
+        }
     }
 
-    [DelimitedRecord(";"), IgnoreFirst(1)]
-    internal class NordeaEntry
-    {
-        [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-        public DateTime Date;
-        public string Text;
-        [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-        public DateTime InterestDate;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Amount;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Saldo;
-    }
+   
 }

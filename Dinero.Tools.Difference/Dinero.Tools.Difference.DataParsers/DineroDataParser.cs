@@ -30,22 +30,22 @@ namespace Dinero.Tools.Difference.DataParsers
 
             return result;
         }
-    }
 
-    [DelimitedRecord(";"), IgnoreFirst(1)]
-    internal class DineroEntry
-    {
-        public string Account;
-        public string AccountName;
-        [FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
-        public DateTime Date;
-        public int? AppendixNumber;
-        public string AppendixType;
-        public string Text;
-        public string TaxType;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Amount;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Saldo;
+        [DelimitedRecord(";"), IgnoreFirst(1)]
+        private class DineroEntry
+        {
+            public string Account;
+            public string AccountName;
+            [FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
+            public DateTime Date;
+            public int? AppendixNumber;
+            public string AppendixType;
+            public string Text;
+            public string TaxType;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Amount;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Saldo;
+        }
     }
 }

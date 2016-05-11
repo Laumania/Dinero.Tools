@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DanskeBankDataParser.cs" />
     <Compile Include="DineroDataParser.cs" />
     <Compile Include="NordeaDataParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

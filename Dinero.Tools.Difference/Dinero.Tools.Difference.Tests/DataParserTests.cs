@@ -39,5 +39,27 @@ namespace Dinero.Tools.Difference.Tests
             Assert.AreEqual(4, result.Count());
             Assert.AreEqual(-62.13m, result.First().Amount);
         }
+
+        [TestMethod]
+        public void DanskeBankParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new DanskeBankDataParser();
+            //Double qoutes are just here, to make it fit inside a string in C#.
+            //The below sample cannot be indented, to match the style. If have to be where it is.
+            var dummyData = @"""Dato"";""Tekst"";""Beløb"";""Saldo"";""Status"";""Afstemt""
+
+""02.01.2014"";""DKSSL Test"";""1.455,00"";""58.185,48"";""Udført"";""Nej""
+
+""02.01.2014"";""Nets - f. Test"";""-125,00"";""58.060,48"";""Udført"";""Ja""
+
+""02.01.2014"";""DKSSL 0101 Test"";""1.455,00"";""59.515,48"";""Udført"";""Nej""
+
+""02.01.2014"";""DKSSL 0101 Test 12"";""1.455,00"";""60.970,48"";""Udført"";""Nej""";
+
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(4, result.Count());
+            Assert.AreEqual(1455m, result.First().Amount);
+        }
     }
 }
