@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FileHelpers, Version=3.1.5.0, Culture=neutral, PublicKeyToken=3e0c08d59cc3d657, processorArchitecture=MSIL">
+      <HintPath>..\packages\FileHelpers.3.1.5\lib\net45\FileHelpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,14 +44,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataParsers\ArbejdernesLandsBankDataParser.cs" />
+    <Compile Include="DataParsers\DanskeBankDataParser.cs" />
+    <Compile Include="DataParsers\DineroDataParser.cs" />
+    <Compile Include="DataParsers\JyskeBankDataParser.cs" />
+    <Compile Include="DataParsers\NordeaDataParser.cs" />
+    <Compile Include="DataParsers\SaxoBankDataParser.cs" />
     <Compile Include="Interfaces\IDataParser.cs" />
+    <Compile Include="Interfaces\IDataParserService.cs" />
     <Compile Include="Interfaces\IDifferenceService.cs" />
+    <Compile Include="Models\DataParseResultModel.cs" />
     <Compile Include="Models\DifferenceEntryModel.cs" />
     <Compile Include="Models\EntryModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\DataParserService.cs" />
     <Compile Include="Services\DifferenceService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

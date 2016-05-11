@@ -4,26 +4,26 @@ using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using FileHelpers;
 
-namespace Dinero.Tools.Difference.DataParsers
+namespace Dinero.Tools.Difference.Core.DataParsers
 {
-    public class NordeaDataParser : IDataParser
+    public class DineroDataParser : IDataParser
     {
         public IEnumerable<EntryModel> Parse(string data)
         {
-            var engine      = new FileHelperEngine<NordeaEntry>();
+            var engine      = new FileHelperEngine<DineroEntry>();
             var parseResult = engine.ReadString(data);
             var result      = new List<EntryModel>();
 
             for (var index = 0; index < parseResult.Length; index++)
             {
-                var nordeaEntry = parseResult[index];
+                var dineroEntry = parseResult[index];
                 var entryModel = new EntryModel()
                 {
-                    Index   = parseResult.Length - (index + 1),
-                    Amount  = nordeaEntry.Amount,
-                    Date    = nordeaEntry.Date,
-                    Text    = nordeaEntry.Text,
-                    Saldo   = nordeaEntry.Saldo
+                    Index   = index,
+                    Amount  = dineroEntry.Amount,
+                    Date    = dineroEntry.Date,
+                    Text    = dineroEntry.Text,
+                    Saldo   = dineroEntry.Saldo
                 };
                 result.Add(entryModel);
             }
@@ -32,19 +32,20 @@ namespace Dinero.Tools.Difference.DataParsers
         }
 
         [DelimitedRecord(";"), IgnoreFirst(1)]
-        private class NordeaEntry
+        private class DineroEntry
         {
-            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public string Account;
+            public string AccountName;
+            [FieldConverter(ConverterKind.Date, "yyyy-MM-dd")]
             public DateTime Date;
+            public int? AppendixNumber;
+            public string AppendixType;
             public string Text;
-            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-            public DateTime InterestDate;
+            public string TaxType;
             [FieldConverter(ConverterKind.Decimal, ",")]
             public decimal Amount;
             [FieldConverter(ConverterKind.Decimal, ",")]
             public decimal Saldo;
         }
     }
-
-   
 }

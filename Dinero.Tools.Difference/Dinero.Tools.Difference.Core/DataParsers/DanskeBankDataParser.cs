@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using FileHelpers;
 
-namespace Dinero.Tools.Difference.DataParsers
+namespace Dinero.Tools.Difference.Core.DataParsers
 {
     public class DanskeBankDataParser : IDataParser
     {

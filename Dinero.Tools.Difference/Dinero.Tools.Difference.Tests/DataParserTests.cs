@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Dinero.Tools.Difference.DataParsers;
+using Dinero.Tools.Difference.Core.DataParsers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dinero.Tools.Difference.Tests

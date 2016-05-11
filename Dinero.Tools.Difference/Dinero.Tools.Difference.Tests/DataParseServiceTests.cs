@@ -1,12 +1,13 @@
 ﻿using System;
-using Dinero.Tools.Difference.DataParsers;
-using Dinero.Tools.Difference.Web.Utils;
+using System.Linq;
+using Dinero.Tools.Difference.Core.DataParsers;
+using Dinero.Tools.Difference.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dinero.Tools.Difference.Tests
 {
     [TestClass]
-    public class DataParserResolverTests
+    public class DataParseServiceTests
     {
         [TestMethod]
         public void ResolveParser_DanskeBankData_ReturnsDanskeBankDataParser()
@@ -21,10 +22,12 @@ namespace Dinero.Tools.Difference.Tests
 
 ""02.01.2014"";""DKSSL 0101 Test 12"";""1.455,00"";""60.970,48"";""Udført"";""Nej""";
 
-            var foundParser = DataParserResolver.ResolveParser(dataToParse);
+            var dataParserService = new DataParserService();
+            var parseResult = dataParserService.Parse(dataToParse);
 
-            Assert.IsNotNull(foundParser);
-            Assert.IsInstanceOfType(foundParser, typeof(DanskeBankDataParser));
+            Assert.IsNotNull(parseResult);
+            Assert.IsNotNull(parseResult.DataParser);
+            Assert.IsInstanceOfType(parseResult.DataParser, typeof(DanskeBankDataParser));
         }
 
         [TestMethod]
@@ -32,9 +35,10 @@ namespace Dinero.Tools.Difference.Tests
         {
             var dataToParse = @"This is invalid CSV data.";
 
-            var foundParser = DataParserResolver.ResolveParser(dataToParse);
+            var dataParserService   = new DataParserService();
+            var parserResult        = dataParserService.Parse(dataToParse);
 
-            Assert.IsNull(foundParser);
+            Assert.IsNull(parserResult);
         }
     }
 }

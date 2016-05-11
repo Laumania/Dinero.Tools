@@ -1,19 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using FileHelpers;
 
-namespace Dinero.Tools.Difference.DataParsers
+namespace Dinero.Tools.Difference.Core.DataParsers
 {
-    public class JyskeBankDataParser : IDataParser
+    public class SaxoBankDataParser : IDataParser
     {
         public IEnumerable<EntryModel> Parse(string data)
         {
-            var engine = new FileHelperEngine<JyskeBankEntry>();
+            var engine = new FileHelperEngine<SaxoBankEntry>();
             var parseResult = engine.ReadString(data);
             var result = new List<EntryModel>();
 
@@ -22,7 +19,7 @@ namespace Dinero.Tools.Difference.DataParsers
                 var nordeaEntry = parseResult[index];
                 var entryModel  = new EntryModel()
                 {
-                    Index       = index,
+                    Index       = parseResult.Length - (index + 1),
                     Amount      = nordeaEntry.Amount,
                     Date        = nordeaEntry.Date,
                     Text        = nordeaEntry.Text,
@@ -34,21 +31,19 @@ namespace Dinero.Tools.Difference.DataParsers
             return result;
         }
 
-        [DelimitedRecord(";"), IgnoreFirst(1)]
-        private class JyskeBankEntry
+        [DelimitedRecord(";"), IgnoreEmptyLines()]
+        private class SaxoBankEntry
         {
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
-            [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
             public DateTime Date;
 
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
-            public string Valor;
-            
-            [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
-            public string Text;
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public DateTime DummyDate;
 
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
-            public string Nothing;
+            public string Text;
 
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             [FieldConverter(ConverterKind.Decimal, ",")]
@@ -57,9 +52,6 @@ namespace Dinero.Tools.Difference.DataParsers
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             [FieldConverter(ConverterKind.Decimal, ",")]
             public decimal Saldo;
-
-            [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
-            public string Balanced;
         }
     }
 }

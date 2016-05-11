@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dinero.Tools.Difference.Core.DataParsers;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using Dinero.Tools.Difference.Core.Services;
-using Dinero.Tools.Difference.DataParsers;
 using Dinero.Tools.Difference.Web.ViewModels;
 
 namespace Dinero.Tools.Difference.Web.Controllers
