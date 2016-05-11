@@ -20,6 +20,7 @@ namespace Dinero.Tools.Difference.Core.Services
                 new JyskeBankDataParser(),
                 new NordeaDataParser(),
                 new SaxoBankDataParser(),
+                new NykreditBankDataParser(), 
             };
 
             foreach (var dataParser in parsers)

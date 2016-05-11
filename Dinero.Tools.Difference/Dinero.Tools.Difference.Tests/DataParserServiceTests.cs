@@ -49,6 +49,32 @@ namespace Dinero.Tools.Difference.Tests
         }
 
         [TestMethod]
+        public void Parse_NykreditBankData_ReturnsNykreditBankData()
+        {
+            var dataToParse = @"Konto 1234-5555558 My Company 1.455,55 DKK
+Dato;Tekst;Beløb;Afstem;Saldo;Rentedato;End-to-end;Kreditorreference;Type;Adviseringer;;;
+11-05-2016;Beskrivelse....;-2.981,36;N;1.455,55;11-05-2016;;;;;;;
+10-05-2016;Beskrivelse....;4.300,00;N;4.436,91;10-05-2016;;;OVF;;;;
+04-05-2016;Beskrivelse....;-17,85;N;136,91;04-05-2016;;;OVF;;;;
+28-04-2016;Beskrivelse....;-799,00;N;154,76;28-04-2016;;;;;;;
+28-04-2016;Beskrivelse....;-149,11;N;953,76;28-04-2016;;;;;;;
+28-04-2016;Beskrivelse....;-4.100,64;N;1.102,87;28-04-2016;;;;;;;
+28-04-2016;Beskrivelse....;-1.230,00;N;5.203,51;28-04-2016;;;;;;;
+28-04-2016;RBeskrivelse....;6.150,00;N;6.433,51;28-04-2016;;;OVF;;;;
+27-04-2016;Beskrivelse....;100,00;N;283,51;27-04-2016;;;OVF;;;;
+27-04-2016;ZBeskrivelse....;-1.118,30;N;183,51;27-04-2016;;;;;;;
+Data hentet 11-05-2016, kl. 22.46.10
+";
+
+            var dataParserService = new DataParserService();
+            var parseResult = dataParserService.Parse(dataToParse);
+
+            Assert.IsNotNull(parseResult);
+            Assert.IsNotNull(parseResult.DataParser);
+            Assert.IsInstanceOfType(parseResult.DataParser, typeof(NykreditBankDataParser));
+        }
+
+        [TestMethod]
         public void Parse_InvalidData_ReturnsNull()
         {
             var dataToParse = @"This is invalid CSV data.";
