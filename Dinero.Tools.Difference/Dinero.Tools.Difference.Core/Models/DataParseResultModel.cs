@@ -10,6 +10,6 @@ namespace Dinero.Tools.Difference.Core.Models
     public class DataParseResultModel
     {
         public IDataParser DataParser { get; set; }
-        public IEnumerable<EntryModel> EntryModels { get; set; }
+        public IEnumerable<EntryModel> BankEntries { get; set; }
     }
 }

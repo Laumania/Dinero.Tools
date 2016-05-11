@@ -32,7 +32,7 @@ namespace Dinero.Tools.Difference.Core.Services
                         var result = new DataParseResultModel()
                         {
                             DataParser  = dataParser,
-                            EntryModels = parsedResult
+                            BankEntries = parsedResult
                         };
                         return result;
                     }
