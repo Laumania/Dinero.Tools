@@ -19,7 +19,7 @@ namespace Dinero.Tools.Difference.DataParsers
                 var nordeaEntry = parseResult[index];
                 var entryModel = new EntryModel()
                 {
-                    Index   = parseResult.Length - index,
+                    Index   = parseResult.Length - (index + 1),
                     Amount  = nordeaEntry.Amount,
                     Date    = nordeaEntry.Date,
                     Text    = nordeaEntry.Text,

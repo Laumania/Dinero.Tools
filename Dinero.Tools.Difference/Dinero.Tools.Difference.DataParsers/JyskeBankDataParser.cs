@@ -9,11 +9,11 @@ using FileHelpers;
 
 namespace Dinero.Tools.Difference.DataParsers
 {
-    public class DanskeBankDataParser : IDataParser
+    public class JyskeBankDataParser : IDataParser
     {
         public IEnumerable<EntryModel> Parse(string data)
         {
-            var engine = new FileHelperEngine<DanskeBankEntry>();
+            var engine = new FileHelperEngine<JyskeBankEntry>();
             var parseResult = engine.ReadString(data);
             var result = new List<EntryModel>();
 
@@ -22,9 +22,7 @@ namespace Dinero.Tools.Difference.DataParsers
                 var nordeaEntry = parseResult[index];
                 var entryModel  = new EntryModel()
                 {
-                    //Note: The sample DanskeBank file I got, has only entries from the same day.
-                    //Therefore, I'm not currently aware which way the index goes.
-                    Index       = parseResult.Length - (index + 1),
+                    Index       = index,
                     Amount      = nordeaEntry.Amount,
                     Date        = nordeaEntry.Date,
                     Text        = nordeaEntry.Text,
@@ -36,15 +34,21 @@ namespace Dinero.Tools.Difference.DataParsers
             return result;
         }
 
-        [DelimitedRecord(";"), IgnoreFirst(1), IgnoreEmptyLines()]
-        private class DanskeBankEntry
+        [DelimitedRecord(";"), IgnoreFirst(1)]
+        private class JyskeBankEntry
         {
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             [FieldConverter(ConverterKind.Date, "dd.MM.yyyy")]
             public DateTime Date;
 
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
+            public string Valor;
+            
+            [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             public string Text;
+
+            [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
+            public string Nothing;
 
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             [FieldConverter(ConverterKind.Decimal, ",")]
@@ -53,6 +57,9 @@ namespace Dinero.Tools.Difference.DataParsers
             [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
             [FieldConverter(ConverterKind.Decimal, ",")]
             public decimal Saldo;
+
+            [FieldQuoted('"', QuoteMode.AlwaysQuoted)]
+            public string Balanced;
         }
     }
 }

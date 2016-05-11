@@ -21,7 +21,7 @@ namespace Dinero.Tools.Difference.Tests
             var result = parser.Parse(dummyData);
 
             Assert.AreEqual(4, result.Count());
-            Assert.AreEqual(-61.25m, result.First().Amount);
+            Assert.AreEqual(-61.25m, result.First(x => x.Index == 0).Amount);
         }
 
         [TestMethod]
@@ -37,7 +37,7 @@ namespace Dinero.Tools.Difference.Tests
             var result = parser.Parse(dummyData);
 
             Assert.AreEqual(4, result.Count());
-            Assert.AreEqual(-62.13m, result.First().Amount);
+            Assert.AreEqual(-164000m, result.First(x => x.Index == 0).Amount);
         }
 
         [TestMethod]
@@ -59,7 +59,26 @@ namespace Dinero.Tools.Difference.Tests
             var result = parser.Parse(dummyData);
 
             Assert.AreEqual(4, result.Count());
-            Assert.AreEqual(1455m, result.First().Amount);
+            Assert.AreEqual(1455m, result.First(x => x.Index == 0).Amount);
+        }
+
+        [TestMethod]
+        public void JyskeBankParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new JyskeBankDataParser();
+            //Double qoutes are just here, to make it fit inside a string in C#.
+            //The below sample cannot be indented, to match the style. If have to be where it is.
+            var dummyData = @"""Dato"";""Valør"";""Tekst"";"""";""Beløb"";""Saldo"";""Afstemt""
+""04.02.2014"";""04.02.2014"";""02.02.14 WWW.NOGET-TEST.COM"";"""";""-79,00"";""4.353,11"";""nej"";""Til rådighed""
+""04.02.2014"";""04.02.2014"";""02.02.14 TEST TEST"";"""";""-99,00"";""4.254,11"";""nej"";""Til rådighed""
+""04.02.2014"";""04.02.2014"";""DK 06138 TAXA"";"""";""-326,00"";""3.928,11"";""nej"";""Til rådighed""
+""05.02.2014"";""05.02.2014"";""EUROPARK A/S"";"""";""-590,00"";""3.338,11"";""nej"";""Til rådighed""
+""05.02.2014"";""05.02.2014"";""DK 02693 TEST AF DANMARK"";"""";""-59,00"";""3.279,11"";""nej"";""Til rådighed""
+";
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(5, result.Count());
+            Assert.AreEqual(-79m, result.First(x => x.Index == 0).Amount);
         }
     }
 }
