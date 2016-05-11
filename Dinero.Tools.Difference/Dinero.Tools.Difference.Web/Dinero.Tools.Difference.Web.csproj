@@ -214,10 +214,6 @@
       <Project>{f02824af-0a5b-4a2e-a8bc-aca64d88d9cd}</Project>
       <Name>Dinero.Tools.Difference.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dinero.Tools.Difference.DataParsers\Dinero.Tools.Difference.DataParsers.csproj">
-      <Project>{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}</Project>
-      <Name>Dinero.Tools.Difference.DataParsers</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

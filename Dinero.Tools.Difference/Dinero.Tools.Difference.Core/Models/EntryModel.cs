@@ -10,7 +10,7 @@ namespace Dinero.Tools.Difference.Core.Models
     public class EntryModel
     {
         /// <summary>
-        /// Lowest index is the oldest entry, highest is the latest.
+        /// Zero based index, lowest index is the oldest entry, highest is the latest.
         /// </summary>
         public int Index { get; set; }
         public string Text { get; set; }

@@ -4,7 +4,7 @@ using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using FileHelpers;
 
-namespace Dinero.Tools.Difference.DataParsers
+namespace Dinero.Tools.Difference.Core.DataParsers
 {
     public class NordeaDataParser : IDataParser
     {
@@ -19,7 +19,7 @@ namespace Dinero.Tools.Difference.DataParsers
                 var nordeaEntry = parseResult[index];
                 var entryModel = new EntryModel()
                 {
-                    Index   = parseResult.Length - index,
+                    Index   = parseResult.Length - (index + 1),
                     Amount  = nordeaEntry.Amount,
                     Date    = nordeaEntry.Date,
                     Text    = nordeaEntry.Text,
@@ -30,19 +30,21 @@ namespace Dinero.Tools.Difference.DataParsers
 
             return result;
         }
+
+        [DelimitedRecord(";"), IgnoreFirst(2)]
+        private class NordeaEntry
+        {
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public DateTime Date;
+            public string Text;
+            [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
+            public DateTime InterestDate;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Amount;
+            [FieldConverter(ConverterKind.Decimal, ",")]
+            public decimal Saldo;
+        }
     }
 
-    [DelimitedRecord(";"), IgnoreFirst(2)]
-    internal class NordeaEntry
-    {
-        [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-        public DateTime Date;
-        public string Text;
-        [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
-        public DateTime InterestDate;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Amount;
-        [FieldConverter(ConverterKind.Decimal, ",")]
-        public decimal Saldo;
-    }
+   
 }

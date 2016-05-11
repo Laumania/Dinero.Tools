@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Dinero.Tools.Difference.Core.DataParsers;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 using Dinero.Tools.Difference.Core.Services;
-using Dinero.Tools.Difference.DataParsers;
 using Dinero.Tools.Difference.Web.ViewModels;
 
 namespace Dinero.Tools.Difference.Web.Controllers
@@ -27,23 +27,23 @@ namespace Dinero.Tools.Difference.Web.Controllers
 
             if (ModelState.IsValid)
             {
-                var dineroCsvContent    = GetFileContent(dineroFile);
-                var bankCsvContent      = GetFileContent(bankFile);
+                var dineroCsvContent        = GetFileContent(dineroFile);
+                var bankCsvContent          = GetFileContent(bankFile);
 
                 if (dineroCsvContent == null || bankCsvContent == null)
                     throw new ArgumentNullException("Something is wrong with one of the files...");
 
-                var dineroDataParser    = new DineroDataParser();
-                var dineroEntries       = dineroDataParser.Parse(dineroCsvContent);
+                var dineroDataParser        = new DineroDataParser();
+                var dineroEntries           = dineroDataParser.Parse(dineroCsvContent);
 
-                var bankDataParser      = new NordeaDataParser();
-                var bankEntries         = bankDataParser.Parse(bankCsvContent);
+                var dataParserService       = new DataParserService();
+                var parserResult            = dataParserService.Parse(bankCsvContent);
 
 
-                var difService          = new DifferenceService();
+                var difService              = new DifferenceService();
 
-                viewModel.Differences       = difService.FindDifferences(dineroEntries, bankEntries);
-                viewModel.TotalBank         = GetLastestEntryEqualOrLowerThanToday(bankEntries).Saldo;
+                viewModel.Differences       = difService.FindDifferences(dineroEntries, parserResult.BankEntries);
+                viewModel.TotalBank         = GetLastestEntryEqualOrLowerThanToday(parserResult.BankEntries).Saldo;
                 viewModel.TotalDinero       = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
                 viewModel.TotalDifference   = viewModel.TotalDinero - viewModel.TotalBank;
             }
