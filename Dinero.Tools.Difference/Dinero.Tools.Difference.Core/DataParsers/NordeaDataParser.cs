@@ -31,7 +31,7 @@ namespace Dinero.Tools.Difference.Core.DataParsers
             return result;
         }
 
-        [DelimitedRecord(";"), IgnoreFirst(1)]
+        [DelimitedRecord(";"), IgnoreFirst(2)]
         private class NordeaEntry
         {
             [FieldConverter(ConverterKind.Date, "dd-MM-yyyy")]
