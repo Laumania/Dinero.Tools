@@ -80,5 +80,25 @@ namespace Dinero.Tools.Difference.Tests
             Assert.AreEqual(5, result.Count());
             Assert.AreEqual(-79m, result.First(x => x.Index == 0).Amount);
         }
+
+        [TestMethod]
+        public void ArbejdernesLandsBankParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new ArbejdernesLandsBankDataParser();
+            //Double qoutes are just here, to make it fit inside a string in C#.
+            //The below sample cannot be indented, to match the style. If have to be where it is.
+            var dummyData = @"20-02-2014;""Standardovf. 333333333"";-500,00; 54480,76;""20-02-2014"";
+20-02-2014;""Standardovf. rødby"";-5040,00; 49440,76;""20-02-2014"";
+20-02-2014;""GIRO/FI Vanløse"";-1636,00; 47804,76;""20-02-2014"";
+21-02-2014;""Standardovf. 222222222"";-1000,00; 46804,76;""21-02-2014"";
+27-02-2014;""Standardovf. 111111111""; 8000,00; 54804,76;""27-02-2014"";
+28-02-2014;""GIRO/FI bil"";-1920,00; 52884,76;""28-02-2014"";
+03-03-2014;""BS TEST Overførsel"";-150,00; 52734,76;""03-03-2014"";
+";
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(7, result.Count());
+            Assert.AreEqual(-500m, result.First(x => x.Index == 0).Amount);
+        }
     }
 }
