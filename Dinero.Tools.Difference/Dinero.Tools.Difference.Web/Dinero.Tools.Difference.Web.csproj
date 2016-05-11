@@ -208,9 +208,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Dinero.Tools.Difference.Core\Dinero.Tools.Difference.Core.csproj">
       <Project>{f02824af-0a5b-4a2e-a8bc-aca64d88d9cd}</Project>
@@ -220,9 +218,6 @@
       <Project>{9CB55491-F1B6-44AA-9C9A-C8685FC53B7B}</Project>
       <Name>Dinero.Tools.Difference.DataParsers</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
