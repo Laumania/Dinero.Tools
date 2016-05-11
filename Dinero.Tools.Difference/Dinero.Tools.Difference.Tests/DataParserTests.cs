@@ -100,5 +100,26 @@ namespace Dinero.Tools.Difference.Tests
             Assert.AreEqual(7, result.Count());
             Assert.AreEqual(-500m, result.First(x => x.Index == 0).Amount);
         }
+
+        [TestMethod]
+        public void SaxoBankParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new SaxoBankDataParser();
+            //Double qoutes are just here, to make it fit inside a string in C#.
+            //The below sample cannot be indented, to match the style. If have to be where it is.
+            var dummyData = @"""26-02-2014"";""26-02-2014"";""Dankort Det Pæne Brød"";""-90,00"";""4.756,94""
+
+""25-02-2014"";""25-02-2014"";""Dankort Det Fine Brød"";""-90,00"";""4.846,94""
+
+""25-02-2014"";""25-02-2014"";""Visa/Dankort DKK   144,91 Kurs 100,00 Facebook"";""-144,91"";""4.936,94""
+
+""25-02-2014"";""25-02-2014"";""Visa/Dankort USD     9,95 Kurs 553,26 Test"";""-55,05"";""5.081,85""
+
+";
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(4, result.Count());
+            Assert.AreEqual(-55.05m, result.First(x => x.Index == 0).Amount);
+        }
     }
 }

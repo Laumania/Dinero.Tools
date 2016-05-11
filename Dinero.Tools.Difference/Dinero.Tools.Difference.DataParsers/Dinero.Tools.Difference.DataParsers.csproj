@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArbejdernesLandsBankDataParser.cs" />
+    <Compile Include="SaxoBankDataParser.cs" />
     <Compile Include="JyskeBankDataParser.cs" />
     <Compile Include="DanskeBankDataParser.cs" />
     <Compile Include="DineroDataParser.cs" />
