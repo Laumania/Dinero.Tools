@@ -10,8 +10,8 @@ namespace Dinero.Tools.Difference.Web.ViewModels
     public class ShowDifferencesViewModel
     {
         public IEnumerable<DifferenceEntryModel> Differences { get; set; }
-        public decimal TotalBank { get; set; }
-        public decimal TotalDinero { get; set; }
+        public EntryModel LatestBankEntry { get; set; }
+        public EntryModel LatestDineroEntry { get; set; }
         public decimal TotalDifference { get; set; }
     }
 }

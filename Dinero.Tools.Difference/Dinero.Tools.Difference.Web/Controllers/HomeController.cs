@@ -43,9 +43,9 @@ namespace Dinero.Tools.Difference.Web.Controllers
                 var difService              = new DifferenceService();
 
                 viewModel.Differences       = difService.FindDifferences(dineroEntries, parserResult.BankEntries);
-                viewModel.TotalBank         = GetLastestEntryEqualOrLowerThanToday(parserResult.BankEntries).Saldo;
-                viewModel.TotalDinero       = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
-                viewModel.TotalDifference   = viewModel.TotalDinero - viewModel.TotalBank;
+                viewModel.LatestBankEntry   = GetLastestEntryEqualOrLowerThanToday(parserResult.BankEntries);
+                viewModel.LatestDineroEntry = GetLastestEntryEqualOrLowerThanToday(dineroEntries);
+                viewModel.TotalDifference   = viewModel.LatestDineroEntry.Saldo - viewModel.LatestBankEntry.Saldo;
             }
             
             return View(viewModel);
