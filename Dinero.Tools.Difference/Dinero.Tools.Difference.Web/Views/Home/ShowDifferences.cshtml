@@ -35,17 +35,29 @@ else
     <div class="row">
         <div class="col-md-6">
             <h2>Dinero.dk</h2>
-            
+
             <p>Saldo: @Model.TotalDinero.ToString("C")</p>
-            <p>Difference: @Model.TotalDifference.ToString("C")</p>
         </div>
 
         <div class="col-md-6">
             <h2>Bank</h2>
-            
+
             <p>Saldo: @Model.TotalBank.ToString("C")</p>
         </div>
     </div>
+
+    <hr />  
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">
+                Fundet difference <br />
+                @Model.TotalDifference.ToString("C")
+            </p>
+        </div>
+    </div>
+
+    <hr />
 
     <div class="row">
         <div class="col-md-12">
