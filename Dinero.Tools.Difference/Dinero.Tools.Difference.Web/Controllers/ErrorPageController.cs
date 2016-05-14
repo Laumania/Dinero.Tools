@@ -17,7 +17,7 @@ namespace Dinero.Tools.Difference.Web.Controllers
 
             var viewModel = new ErrorViewModel();
             viewModel.Exception = exception;
-            return View(viewModel);
+            return View("CustomError", viewModel);
         }
     }
 }

@@ -203,7 +203,7 @@
     <Content Include="less\freelancer.less" />
     <Content Include="less\mixins.less" />
     <Content Include="less\variables.less" />
-    <Content Include="Views\ErrorPage\Error.cshtml" />
+    <Content Include="Views\Shared\CustomError.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
