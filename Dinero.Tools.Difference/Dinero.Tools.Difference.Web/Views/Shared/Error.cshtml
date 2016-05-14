@@ -1,0 +1,25 @@
+﻿@model Dinero.Tools.Difference.Web.ViewModels.ErrorViewModel
+@{
+    ViewBag.Title = "Ups, noget gik galt... " + ViewBag.StatusCode;
+}
+
+
+<div class="container" role="main">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="error">@ViewBag.Title</h1>
+
+            <p class="lead">@(Model?.Text)</p>
+
+            @if(Model.Exception != null)
+            {
+                <p class="error">
+                    @Model.Exception.Message
+                </p>
+                <p class="error small">
+                    @Model.Exception.ToString()
+                </p>
+            }
+        </div>
+    </div>
+</div>

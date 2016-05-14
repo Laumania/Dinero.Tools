@@ -2,6 +2,10 @@
 @using Dinero.Tools.Difference.Core.Models
 @model Dinero.Tools.Difference.Web.ViewModels.ShowDifferencesViewModel
 
+@{
+    ViewBag.Title = "Dinero Tools - Resultat";
+}
+
 @helper GetDifferenceRowClass(DifferenceEntryStates state)
 {
 if (state == DifferenceEntryStates.Unbalanced)
