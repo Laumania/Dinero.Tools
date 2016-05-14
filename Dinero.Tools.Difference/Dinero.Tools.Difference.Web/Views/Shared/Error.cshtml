@@ -5,20 +5,44 @@
 
 
 <div class="container" role="main">
+
+
     <div class="row">
         <div class="col-md-12">
             <h1 class="error">@ViewBag.Title</h1>
-
             <p class="lead">@(Model?.Text)</p>
+        </div>
+    </div>
 
-            @if(Model.Exception != null)
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model.Exception != null)
             {
-                <p class="error">
+                <p class="lead">
                     @Model.Exception.Message
                 </p>
-                <p class="error small">
-                    @Model.Exception.ToString()
+
+                <hr />
+                <p class="small">
+                    Fordi dette værktøj stadigvæk er i <strong>beta</strong>, ses her under lidt mere tekniske informationer om fejlen.
+                    <br />
+                    Disse skal du blot se bort fra, med mindre du har tænkt dig at fixe fejlen ;)
                 </p>
+
+                <div>
+                    <a class="btn btn-primary" role="button" data-toggle="collapse" href="#stacktrace" aria-expanded="false" aria-controls="stacktrace">
+                        Vis mere info
+                    </a>
+                </div>
+
+                <div class="collapse" id="stacktrace">
+                    <div class="well">
+                        <p class="text-danger small">
+                            @Model.Exception.ToString()
+                        </p>
+                    </div>
+                </div>
+
             }
         </div>
     </div>
