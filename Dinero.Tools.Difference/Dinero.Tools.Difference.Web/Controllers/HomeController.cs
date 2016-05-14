@@ -30,8 +30,10 @@ namespace Dinero.Tools.Difference.Web.Controllers
                 var dineroCsvContent        = GetFileContent(dineroFile);
                 var bankCsvContent          = GetFileContent(bankFile);
 
-                if (dineroCsvContent == null || bankCsvContent == null)
-                    throw new ArgumentNullException("Something is wrong with one of the files...");
+                if (dineroCsvContent == null)
+                    throw new Exception("Hov, tror du manglede at vælge din Dinero fil.");
+                if (bankCsvContent == null)
+                    throw new Exception("Hov, tror sørme du manglede at vælge din bank fil.");
 
                 var dineroDataParser        = new DineroDataParser();
                 var dineroEntries           = dineroDataParser.Parse(dineroCsvContent);
@@ -43,9 +45,9 @@ namespace Dinero.Tools.Difference.Web.Controllers
                 var difService              = new DifferenceService();
 
                 viewModel.Differences       = difService.FindDifferences(dineroEntries, parserResult.BankEntries);
-                viewModel.TotalBank         = GetLastestEntryEqualOrLowerThanToday(parserResult.BankEntries).Saldo;
-                viewModel.TotalDinero       = GetLastestEntryEqualOrLowerThanToday(dineroEntries).Saldo;
-                viewModel.TotalDifference   = viewModel.TotalDinero - viewModel.TotalBank;
+                viewModel.LatestBankEntry   = GetLastestEntryEqualOrLowerThanToday(parserResult.BankEntries);
+                viewModel.LatestDineroEntry = GetLastestEntryEqualOrLowerThanToday(dineroEntries);
+                viewModel.TotalDifference   = viewModel.LatestDineroEntry.Saldo - viewModel.LatestBankEntry.Saldo;
             }
             
             return View(viewModel);

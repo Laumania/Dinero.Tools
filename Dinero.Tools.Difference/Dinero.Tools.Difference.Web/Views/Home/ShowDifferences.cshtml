@@ -2,6 +2,10 @@
 @using Dinero.Tools.Difference.Core.Models
 @model Dinero.Tools.Difference.Web.ViewModels.ShowDifferencesViewModel
 
+@{
+    ViewBag.Title = "Dinero Tools - Resultat";
+}
+
 @helper GetDifferenceRowClass(DifferenceEntryStates state)
 {
 if (state == DifferenceEntryStates.Unbalanced)
@@ -35,17 +39,31 @@ else
     <div class="row">
         <div class="col-md-6">
             <h2>Dinero.dk</h2>
-            
-            <p>Saldo: @Model.TotalDinero.ToString("C")</p>
-            <p>Difference: @Model.TotalDifference.ToString("C")</p>
+
+            <p>Saldo: @Model.LatestDineroEntry.Saldo.ToString("C")</p>
+            <small>(Pr. @Model.LatestDineroEntry.Date.ToShortDateString())</small>
         </div>
 
         <div class="col-md-6">
             <h2>Bank</h2>
-            
-            <p>Saldo: @Model.TotalBank.ToString("C")</p>
+
+            <p>Saldo: @Model.LatestBankEntry.Saldo.ToString("C")</p>
+            <small>(Pr. @Model.LatestBankEntry.Date.ToShortDateString())</small>
         </div>
     </div>
+
+    <hr />  
+
+    <div class="row">
+        <div class="col-md-12">
+            <p class="text-center">
+                Fundet difference <br />
+                @Model.TotalDifference.ToString("C")
+            </p>
+        </div>
+    </div>
+
+    <hr />
 
     <div class="row">
         <div class="col-md-12">
@@ -69,10 +87,10 @@ else
                     @foreach (var diffEntry in @Model.Differences.OrderByDescending(x => x.RelevantDate))
                     {
                         <tr class="@GetDifferenceRowClass(diffEntry.State)">
-                            <td>@(diffEntry.DineroEntry?.Date.ToString("dd-MM-yyyy"))</td>
+                            <td>@(diffEntry.DineroEntry?.Date.ToShortDateString())</td>
                             <td>@(diffEntry.DineroEntry?.Text)</td>
                             <td class="text-right">@(diffEntry.DineroEntry?.Amount.ToString("C"))</td>
-                            <td>@(diffEntry.BankEntry?.Date.ToString("dd-MM-yyyy"))</td>
+                            <td>@(diffEntry.BankEntry?.Date.ToShortDateString())</td>
                             <td>@(diffEntry.BankEntry?.Text)</td>
                             <td class="text-right">@(diffEntry.BankEntry?.Amount.ToString("C"))</td>
                         </tr>
