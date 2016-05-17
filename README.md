@@ -12,6 +12,7 @@ Men hvad er det så, du finder her, tænker du?
 
 #Find de manglende bilag i Dinero.dk ved bankafstemning
 'master' deployes her: http://dinero-difference.laumania.net/
+
 'dev' deployes: http://dinero-difference-tool-dev.azurewebsites.net/
 
 Når du laver regnskab har du nogen gange en difference mellem hvad Dinero mener der skal stå i din bank, og hvad din bank reelt siger. Jo flere bilag du har, jo sværer er det at finde frem til hvor denne difference kommer fra.
