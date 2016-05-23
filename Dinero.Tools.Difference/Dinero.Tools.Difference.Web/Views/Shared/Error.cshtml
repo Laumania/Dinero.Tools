@@ -17,26 +17,25 @@
         <div class="col-md-12">
             @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
             {
-                <p class="lead">
-                    <b>Exception:</b> @Model.Exception.Message<br/>
-                    <b>Controller:</b> @Model.ControllerName<br/>
-                    <b>Action:</b> @Model.ActionName
-                </p>
+                <div class="bg-info">
+                    <p >
+                        Fordi dette værktøj stadigvæk er i <strong>beta</strong>, ses her under lidt mere tekniske informationer om fejlen.
+                        <br />
+                        Disse skal du blot se bort fra, med mindre du har tænkt dig at fixe fejlen ;)
+                    </p>
+                </div>
 
                 <hr/>
-                <p class="small">
-                    Fordi dette værktøj stadigvæk er i <strong>beta</strong>, ses her under lidt mere tekniske informationer om fejlen.
-                    <br/>
-                    Disse skal du blot se bort fra, med mindre du har tænkt dig at fixe fejlen ;)
-                </p>
 
-                <p>
-                    Endnu mere teknisk fnidder.
+                <p class="small">
+                    <b>Exception:</b> @Model.Exception.Message<br />
+                    <b>Controller:</b> @Model.ControllerName<br />
+                    <b>Action:</b> @Model.ActionName
                 </p>
 
                 <div>
                     <div class="well">
-                        <pre>
+                        <pre class="error">
                             @Model.Exception.StackTrace
                         </pre>
                     </div>
