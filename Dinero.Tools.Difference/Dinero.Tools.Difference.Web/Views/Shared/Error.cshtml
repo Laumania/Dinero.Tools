@@ -1,0 +1,47 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    ViewBag.Title = "Ups, noget gik galt... ";
+}
+
+
+<div class="container" role="main">
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="error">@ViewBag.Title</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+            {
+                <p class="lead">
+                    <b>Exception:</b> @Model.Exception.Message<br/>
+                    <b>Controller:</b> @Model.ControllerName<br/>
+                    <b>Action:</b> @Model.ActionName
+                </p>
+
+                <hr/>
+                <p class="small">
+                    Fordi dette værktøj stadigvæk er i <strong>beta</strong>, ses her under lidt mere tekniske informationer om fejlen.
+                    <br/>
+                    Disse skal du blot se bort fra, med mindre du har tænkt dig at fixe fejlen ;)
+                </p>
+
+                <p>
+                    Endnu mere teknisk fnidder.
+                </p>
+
+                <div>
+                    <div class="well">
+                        <pre>
+                            @Model.Exception.StackTrace
+                        </pre>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
