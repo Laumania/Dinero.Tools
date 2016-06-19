@@ -15,18 +15,7 @@
 
     <div class="row">
         <div class="col-md-12">
-
-            @if(Model == null)
-            {
-                <p>Model is null</p>
-            }
-            else
-            {
-                <p>Model is ready: @Model.ToString()</p>
-            }
-
-
-            @*@if (Model != null && HttpContext.Current.IsDebuggingEnabled)
+            @if (Model != null && HttpContext.Current.IsDebuggingEnabled)
             {
                 <div>
                     <p >
@@ -51,7 +40,7 @@
                         </pre>
                     </div>
                 </div>
-            }*@
+            }
         </div>
     </div>
 </div>
