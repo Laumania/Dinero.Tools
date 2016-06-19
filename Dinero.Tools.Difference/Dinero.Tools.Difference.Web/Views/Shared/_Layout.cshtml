@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Net.Mime
+@using System.Reflection
+@using Dinero.Tools.Difference.Web.Utils
+<!DOCTYPE html>
 
 <html lang="da">
 <head>
@@ -7,6 +10,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>@ViewBag.Title</title>
+
+    <meta name="description" content="Find differencen ved bankafstemning i Dinero.dk.">
+    <meta name="keywords" content="Dinero,Dinero.dk,bankafstemning,Hjælp,Tool,Værktøj">
+    <meta name="author" content="Mads Laumann">
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
 
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -26,6 +34,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- Application insights client tracking script -->
+    <script type="text/javascript">  var appInsights = window.appInsights || function (config) { function r(config) { t[config] = function () { var i = arguments; t.queue.push(function () { t[config].apply(t, i) }) } } var t = { config: config }, u = document, e = window, o = "script", s = u.createElement(o), i, f; for (s.src = config.url || "//az416426.vo.msecnd.net/scripts/a/ai.0.js", u.getElementsByTagName(o)[0].parentNode.appendChild(s), t.cookie = u.cookie, t.queue = [], i = ["Event", "Exception", "Metric", "PageView", "Trace"]; i.length;) r("track" + i.pop()); return r("setAuthenticatedUserContext"), r("clearAuthenticatedUserContext"), config.disableExceptionTracking || (i = "onerror", r("_" + i), f = e[i], e[i] = function (config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t["_" + i](config, r, u, e, o), s }), t }({ instrumentationKey: "cb495f9c-f449-4a86-a0e2-2da62885509f" }); window.appInsights = appInsights; appInsights.trackPageView();</script>
 
 </head>
 
@@ -71,6 +82,9 @@
                     <div class="col-lg-12">
                         Lavet af <a href="https://github.com/Laumania" target="_blank">Mads Laumann</a> 2016
                     </div>
+                    <div class="small">
+                        Build date: <a href="https://github.com/Laumania/Dinero.Tools/commits/master">@ApplicationInformation.CompileDate</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -109,7 +123,5 @@
         ga('send', 'pageview');
 
     </script>
-
-    <a href="https://github.com/Laumania/Dinero.Tools"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
 </body>
 </html>
