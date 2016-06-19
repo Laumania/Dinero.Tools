@@ -157,6 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\ApplicationInformation.cs" />
     <Compile Include="ViewModels\ShowDifferencesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

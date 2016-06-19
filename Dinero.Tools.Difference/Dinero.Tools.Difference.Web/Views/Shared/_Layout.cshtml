@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using System.Net.Mime
+@using System.Reflection
+@using Dinero.Tools.Difference.Web.Utils
+<!DOCTYPE html>
 
 <html lang="da">
 <head>
@@ -73,6 +76,9 @@
                 <div class="row">
                     <div class="col-lg-12">
                         Lavet af <a href="https://github.com/Laumania" target="_blank">Mads Laumann</a> 2016
+                    </div>
+                    <div class="small">
+                        Build date: @ApplicationInformation.CompileDate
                     </div>
                 </div>
             </div>
