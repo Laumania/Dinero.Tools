@@ -122,6 +122,7 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\dinerotools.css" />
     <Content Include="css\freelancer.css" />
+    <Content Include="img\favicon.ico" />
     <Content Include="font-awesome\css\font-awesome.css" />
     <Content Include="font-awesome\css\font-awesome.min.css" />
     <Content Include="font-awesome\fonts\fontawesome-webfont.svg" />
