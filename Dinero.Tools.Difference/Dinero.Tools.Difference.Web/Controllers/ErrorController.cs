@@ -12,7 +12,7 @@ namespace Dinero.Tools.Difference.Web.Controllers
     {
         public ViewResult Index(Exception exception)
         {
-            return View("Error");
+            return View("Error", exception);
         }
     }
 }
