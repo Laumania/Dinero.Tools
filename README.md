@@ -4,16 +4,12 @@ Dinero er et virkelig godt og simpelt regnskabs program/service, til små virkso
 
 Dinero kan rigtig mange ting, men de kan naturligvis ikke implementere alle features og ønsker. Derfor har jeg lavet dette repo med små tools, som jeg personlig har brug for og savner i Dinero. 
 
-Forhåbentlig kan udviklerne ved Dinero så blive inspireret her, så vi kan få nogle fede features in i Dinero :P
-
-Nok om det, nu skrev jeg "tools" i flertal... rent faktisk er det kun et tool som jeg står og mangler lige nu, men med det lille ekstra flertals "s", er der mulighed for at lægge flere i hvis det skulle blive nødvendigt.
-
-Men hvad er det så, du finder her, tænker du?
+Forhåbentlig kan udviklerne ved Dinero så blive inspireret her, så vi kan få nogle fede features ind i Dinero :)
 
 #Find de manglende bilag i Dinero.dk ved bankafstemning
-'master' deployes her: http://dinero-difference.laumania.net/
+Den stabile 'master' branch deployes her: http://dinero-difference.laumania.net/
 
-'dev' deployes: http://dinero-difference-tool-dev.azurewebsites.net/
+Udviklings 'dev' branch deployes her: http://dinero-difference-tool-dev.azurewebsites.net/
 
 Når du laver regnskab har du nogen gange en difference mellem hvad Dinero mener der skal stå i din bank, og hvad din bank reelt siger. Jo flere bilag du har, jo sværer er det at finde frem til hvor denne difference kommer fra.
 
