@@ -155,10 +155,10 @@ Data hentet 11-05-2016, kl. 22.46.10
             var parser = new SparNordDataParser();
 
             var dummyData = @"Dato;Tekst;Bel¿b;Saldo
-                            15/08/2016;Debetkort    Redoffice Kontorsu;-87,31;15490,49
-                            15/08/2016;CLEARHAUS 2016-08-12;55,53;15546,02
-                            17/08/2016;Debetkort    postdanmarkdk;-27;15519,02
-                            17/08/2016;Debetkort    pakkelabelsdk;-58;15461,02";
+                            15/08/2016;Det første;-87,31;15490,49
+                            15/08/2016;Noget andet;55,53;15546,02
+                            17/08/2016;Noget med Top Danmark;-27;15519,02
+                            17/08/2016;Noget med Facebook;-58;15461,02";
             var result = parser.Parse(dummyData);
 
             Assert.AreEqual(4, result.Count());
