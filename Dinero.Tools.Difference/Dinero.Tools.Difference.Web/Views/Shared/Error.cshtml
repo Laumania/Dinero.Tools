@@ -32,14 +32,17 @@
 
                 <hr/>
 
-                <p class="small">
-                    <b>Exception:</b> @Model.Exception.Message<br />
-                    <b>Controller:</b> @Model.ControllerName<br />
-                    <b>Action:</b> @Model.ActionName
-                </p>
-
                 <div>
                     <div class="well">
+                        <p class="small">
+                            <b>Exception:</b> @Model.Exception.Message<br />
+                            <b>Controller:</b> @Model.ControllerName<br />
+                            <b>Action:</b> @Model.ActionName
+                        </p>
+
+                        <p class="small">
+                            <b>StackTrace: </b>
+                        </p>
                         <pre class="error">
                             @Model.Exception.StackTrace
                         </pre>
