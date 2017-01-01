@@ -55,7 +55,7 @@ namespace Dinero.Tools.Difference.Core.Services
 
             foreach (var dineroEntry in dineroEntries)
             {
-                var foundBankEntry              = bankEntries.FirstOrDefault(x => x.Amount == dineroEntry.Amount && processedEntryModels.Contains(x) == false);
+                var foundBankEntry              = FindBankEntryWithNearestDate(bankEntries.Except(processedEntryModels), dineroEntry);
                 var diffEntryModel              = new DifferenceEntryModel()
                 {
                     DineroEntry                 = dineroEntry
@@ -92,18 +92,25 @@ namespace Dinero.Tools.Difference.Core.Services
             return result;
         }
 
-        //private bool IsSelfCancelling(EntryModel dineroEntry, IEnumerable<EntryModel> dineroEntries)
-        //{
-        //    var counterAmount = dineroEntry.Amount*-1;
-        //    var foundEntryWithCounterAmount = dineroEntries.FirstOrDefault(x => x.State == EntryModelStates.Unprocessed && x.Amount == counterAmount);
+        private EntryModel FindBankEntryWithNearestDate(IEnumerable<EntryModel> bankEntries, EntryModel dineroEntryToMatch)
+        {
+            var foundEntries                        = bankEntries.Where(x => x.Amount == dineroEntryToMatch.Amount);
+            EntryModel nearestEntryFound            = null;
+            double smallestTimeDifferenceInMinutes  = double.MaxValue;
 
-        //    if (foundEntryWithCounterAmount != null)
-        //    {
-        //        //foundEntryWithCounterAmount.State = EntryModelStates.Processed;
-        //        return true;
-        //    }
+            foreach (var foundEntry in foundEntries)
+            {
+                var differenceInMinutes = Math.Abs((dineroEntryToMatch.Date - foundEntry.Date).TotalMinutes);
 
-        //    return false;
-        //}
+                if (differenceInMinutes < smallestTimeDifferenceInMinutes)
+                {
+                    smallestTimeDifferenceInMinutes = differenceInMinutes;
+                    nearestEntryFound               = foundEntry;
+                }
+
+            }
+
+            return nearestEntryFound;
+        }
     }
 }

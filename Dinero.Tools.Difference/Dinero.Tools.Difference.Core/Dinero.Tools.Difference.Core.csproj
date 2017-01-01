@@ -51,6 +51,7 @@
     <Compile Include="DataParsers\JyskeBankDataParser.cs" />
     <Compile Include="DataParsers\NordeaDataParser.cs" />
     <Compile Include="DataParsers\SaxoBankDataParser.cs" />
+    <Compile Include="DataParsers\SparNordDataParser.cs" />
     <Compile Include="Interfaces\IDataParser.cs" />
     <Compile Include="Interfaces\IDataParserService.cs" />
     <Compile Include="Interfaces\IDifferenceService.cs" />

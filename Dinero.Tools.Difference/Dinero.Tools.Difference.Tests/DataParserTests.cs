@@ -147,5 +147,22 @@ Data hentet 11-05-2016, kl. 22.46.10
             Assert.AreEqual(10, result.Count());
             Assert.AreEqual(-1118.30m, result.First(x => x.Index == 0).Amount);
         }
+
+
+        [TestMethod]
+        public void SparNordParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new SparNordDataParser();
+
+            var dummyData = @"Dato;Tekst;Bel¿b;Saldo
+                            15/08/2016;Det første;-87,31;15490,49
+                            15/08/2016;Noget andet;55,53;15546,02
+                            17/08/2016;Noget med Top Danmark;-27;15519,02
+                            17/08/2016;Noget med Facebook;-58;15461,02";
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(4, result.Count());
+            Assert.AreEqual(-87.31m, result.First(x => x.Index == 0).Amount);
+        }
     }
 }

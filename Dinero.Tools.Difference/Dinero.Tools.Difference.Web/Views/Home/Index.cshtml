@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Dinero Tools - Her skruer vi Dinero.dk op på 11!";
+    ViewBag.Title = "Dinero.dk Værktøj - Find differencen og de manglende bilag i Dinero.dk ved bankafstemning.";
 }
 
 <!-- Header -->
@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <img class="img-responsive" src="/img/profile.png" alt="">
+                <img class="img-responsive" style="height: 150px;" src="/img/profile.png" alt="">
                 <div class="intro-text">
                     <span class="name">Find differencen</span>
                     <hr class="star-light">
@@ -49,17 +49,18 @@
 
                 <div class="col-md-4">
                     <h2>2. Vælg bank fil</h2>
-                    <input type="file" class="btn btn-primary" id="BankFile" name="bankFile" />
-                    
+                    <input type="file" class="btn btn-primary" id="BankFile" name="bankFile"/>
+
                     <div class="text-left">
-                        <em>Understøtter CSV filer fra Nordea, Arbejdernes Landsbank, Danske Bank, Jyske Bank, Saxo Bank og Nykredit.</em>
-                        <p>Denne fil hedder forskelligt og hentes på forskellige måder, alt efter hvilken bank du har. Den fil som skal bruges her er det CSV kontoudtræk man kan hente i de fleste banker.<br />Vælg samme dato interval som på Dinero filen. Typisk vil det være hele indeværende år.</p>
+                        <em>Understøtter CSV filer fra Nordea, Arbejdernes Landsbank, Danske Bank, Jyske Bank, Saxo Bank, Nykredit og Spar Nord.</em>
+                        <p>Denne fil hedder forskelligt og hentes på forskellige måder, alt efter hvilken bank du har. Den fil som skal bruges her er det CSV kontoudtræk man kan hente i de fleste banker.<br/>Vælg samme dato interval som på Dinero filen. Typisk vil det være hele indeværende år.
+                        </p>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <h2>3. Revisor tryl!</h2>
-                    <input type="submit" value="Start!" class="btn btn-primary"/>
+                    <h2>3. Sæt i gang</h2>
+                    <input type="submit" value="Find differencen" class="btn btn-primary"/>
                     <div class="text-left">
                         <em>Bemærk: Filerne gemmes ikke på serveren og deles ikke med nogen.</em>
                         <p>Når begge filer er valgt, trykkes der her og de uploades. Værktøjet udfører så revisor magien der skal til for at synliggøre dine differencer, så det bliver nemmere for dig at finde ud af hvad du mangler, eller har for meget i Dinero.dk.</p>
@@ -68,7 +69,6 @@
             }
         </div>
     </div>
-
 
     <div class="row">
         <div class="col-md-12">
@@ -97,10 +97,66 @@
 
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <hr />
+                <hr/>
                 <p>Værktøjet arbejder udelukkende ud fra de to filer du angiver. Der er altså ingen integration til din Dinero.dk konto. Intet ændres og intet læses derfra.</p>
                 <p>Hverken Dinero eller bank filen gemmes på serveren, og vises kun for dig.</p>
             </div>
         </div>
     </div>
 </section>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2>Seneste ændringer</h2>
+                <hr class="star-primary">
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <hr />
+                <small>19-09-2016</small>
+                <p>
+                    Tilføjet understøttelse af CSV filer fra <strong>Spar Nord</strong>.
+                </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <hr />
+                <small>24-06-2016</small>
+                <p>
+                    I dag er der blevet tilføjet en række små ting til forsiden.
+                    <ul>
+                        <li>Tilføjet "cookie warning", påkrævet af EU *facepalm*.</li>
+                        <li>Tilføjet "popup" omkring tilmelding til nyhedsbrevet. Dette er noget jeg gør for at have en mulighed for at skrive ud til jer der synes dette værktøj ser interessant ud, når der er nye og spændende ting.</li>
+                        <li>Tilføjet denne "seneste ændringer" sektion, så du kan se hvad der er sket siden sidst.</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <hr />
+                <small>23-06-2016</small>
+                <p>Når værktøjet skal forsøge at finde en bank postering, som matcher en Dinero postering, så bruges datoen nu for at finde bedste match. Den finder simpelthen den postering, som dato mæssigt ligger tættest på, da jeg antager at det vil være den rigtige i de fleste tilfælde.</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <hr />
+                <small>17-06-2016</small>
+                <p>Efter længere tid uden opdateringer, har jeg nu endelig fået implementeret en bedre fejlside. Dette gør at når en fejl sker, og det gør det tit fordi værktøjet her er under udvikling, ja så vises der flere info som kan bruges til at fixe fejlen på sigt.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
