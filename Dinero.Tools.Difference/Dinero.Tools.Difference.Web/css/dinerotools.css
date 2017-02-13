@@ -15,16 +15,16 @@
     }
 }
 
-.table > tbody > tr.future {
-    background-color: #CBCBCB;
+.table > tbody > tr.future > td {
+    background-color: #CBCBCB !important;
 }
 
-.table > tbody > tr.unbalanced {
-    background-color: #e74c3c;
-    color: white;
+.table > tbody > tr.unbalanced > td {
+    background-color: #e74c3c !important;
+    color: white !important;
 }
 
-.table > tbody > tr.selfcancelling {
-    background-color: #f9f9f9;
-    color: #9a9a9a;
+.table > tbody > tr.selfcancelling > td {
+    background-color: #f9f9f9 !important;
+    color: #9a9a9a !important;
 }
