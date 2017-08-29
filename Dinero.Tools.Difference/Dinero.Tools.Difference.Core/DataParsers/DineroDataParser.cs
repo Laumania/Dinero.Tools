@@ -32,6 +32,7 @@ namespace Dinero.Tools.Difference.Core.DataParsers
         }
 
         [DelimitedRecord(";"), IgnoreFirst(1)]
+        [IgnoreEmptyLines]
         private class DineroEntry
         {
             public string Account;
