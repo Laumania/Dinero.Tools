@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dinero.Tools.Difference.Core.DataParsers;
+using Dinero.Tools.Difference.Core.Exceptions;
 using Dinero.Tools.Difference.Core.Interfaces;
 using Dinero.Tools.Difference.Core.Models;
 
@@ -46,7 +47,7 @@ namespace Dinero.Tools.Difference.Core.Services
                 }
             }
 
-            return null;
+            throw new DataParserNotFoundException($"No data parser found for the current bank file: '{data}'");
         }
     }
 }
