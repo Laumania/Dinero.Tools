@@ -31,6 +31,9 @@ namespace Dinero.Tools.Difference.Core.DataParsers
             return result;
         }
 
+        /// <summary>
+        /// This works for both SaxoBank and Laan & Spar Bank
+        /// </summary>
         [DelimitedRecord(";"), IgnoreEmptyLines()]
         private class SaxoBankEntry
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Dinero.Tools.Difference.Core.DataParsers;
@@ -64,10 +65,9 @@ namespace Dinero.Tools.Difference.Web.Controllers
             if (file != null && file.ContentLength > 0)
             {
                 var stringContent = "";
-                using (var reader = new System.IO.BinaryReader(file.InputStream))
+                using (var reader = new System.IO.StreamReader(file.InputStream))
                 {
-                    var content = reader.ReadBytes(file.ContentLength);
-                    stringContent = System.Text.Encoding.UTF8.GetString(content);
+                    stringContent = reader.ReadToEnd();
                 }
                 return stringContent;
             }
