@@ -13,7 +13,7 @@ namespace Dinero.Tools.Difference.Core.DataParsers
     {
         public IEnumerable<EntryModel> Parse(string data)
         {
-            var engine      = new FileHelperEngine<SparNordEntry>();
+            var engine      = new FileHelperEngine<HandelsbankenEntry>();
             var parseResult = engine.ReadString(data);
             var result      = new List<EntryModel>();
 
@@ -35,7 +35,7 @@ namespace Dinero.Tools.Difference.Core.DataParsers
         }
 
         [DelimitedRecord(";"), IgnoreEmptyLines(), IgnoreFirst()]
-        private class SparNordEntry
+        private class HandelsbankenEntry
         {
             [FieldOrder(1)]
             [FieldConverter(ConverterKind.Date, @"dd-MM-yyyy")]
@@ -53,6 +53,7 @@ namespace Dinero.Tools.Difference.Core.DataParsers
             public decimal Saldo;
 
             [FieldOrder(5)]
+            [FieldOptional]
             public string Dummy;
         }
     }
