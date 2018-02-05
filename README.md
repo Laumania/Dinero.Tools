@@ -30,7 +30,7 @@ Alternativt, så deltag i chatten, så tager vi en snak der:
 Er du udvikler, skal du være velkommen til at sende pull requests med forslag :)
 
 # Tekniske spidsfindigheder
-- Visual Studio 2015
+- Visual Studio 2017
 - C# .NET 4.5.2
 - ASP.NET MVC 5
 - UnitTest
