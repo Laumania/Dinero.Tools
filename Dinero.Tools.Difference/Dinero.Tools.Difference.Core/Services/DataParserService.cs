@@ -22,7 +22,8 @@ namespace Dinero.Tools.Difference.Core.Services
                 new NordeaDataParser(),
                 new SaxoBankDataParser(),
                 new NykreditBankDataParser(), 
-                new SparNordDataParser()
+                new SparNordDataParser(),
+                new HandelsbankenDataParser(), 
             };
 
             foreach (var dataParser in parsers)

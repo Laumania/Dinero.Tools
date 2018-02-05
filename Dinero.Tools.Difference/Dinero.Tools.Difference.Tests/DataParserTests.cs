@@ -164,5 +164,21 @@ Data hentet 11-05-2016, kl. 22.46.10
             Assert.AreEqual(4, result.Count());
             Assert.AreEqual(-87.31m, result.First(x => x.Index == 0).Amount);
         }
+
+        [TestMethod]
+        public void HandelsbankenParse_ValidInputWith4Entries_Return4Entries()
+        {
+            var parser = new HandelsbankenDataParser();
+
+            var dummyData = @"Dato;Tekst;Amount;Saldo
+                            15-08-2016;""Faktura 1234 fra thinkability ApS"";-1500,25;15490,49;
+                            15-08-2016;""Noget andet"";55,53;15546,02;
+                            17-08-2016;""Noget med Top Danmark"";-27;15519,02;
+                            17-08-2016;""Noget med Facebook"";-58;15461,02;";
+            var result = parser.Parse(dummyData);
+
+            Assert.AreEqual(4, result.Count());
+            Assert.AreEqual(-1500.25m, result.First(x => x.Index == 0).Amount);
+        }
     }
 }
