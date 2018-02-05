@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Dinero.Tools.Difference.Core.DataParsers;
+using Dinero.Tools.Difference.Core.Exceptions;
 using Dinero.Tools.Difference.Core.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -75,18 +76,18 @@ Data hentet 11-05-2016, kl. 22.46.10
         }
 
         [TestMethod]
+        [ExpectedException(typeof(DataParserNotFoundException))]
         public void Parse_InvalidData_ReturnsNull()
         {
             var dataToParse = @"This is invalid CSV data.";
-
+            
             var dataParserService   = new DataParserService();
             var parserResult        = dataParserService.Parse(dataToParse);
-
-            Assert.IsNull(parserResult);
         }
 
         [TestMethod]
-        public void Parse_DineroData_ReturnsNull()
+        [ExpectedException(typeof(DataParserNotFoundException))]
+        public void Parse_DineroData_ThrowsException()
         {
             var dataToParse = @"Konto;Kontonavn;Dato;Bilag;Bilagstype;Tekst;Momstype;Beløb;Saldo
                                 55000;Bank;2016-01-01;9;Køb;#Betalingsløsning - Quickpay;;-61,25;498309,26
@@ -94,10 +95,8 @@ Data hentet 11-05-2016, kl. 22.46.10
                                 55000;Bank;2016-01-01;26;Køb;#Gebyr;;-800,00;492444,15
                                 55000;Bank;2016-01-06;3;Køb;#Software - Github;;-593,84;491850,31";
 
-            var dataParserService = new DataParserService();
-            var parserResult = dataParserService.Parse(dataToParse);
-
-            Assert.IsNull(parserResult);
+            var dataParserService   = new DataParserService();
+            var parserResult        = dataParserService.Parse(dataToParse);
         }
     }
 }
